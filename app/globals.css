@@ -1,0 +1,274 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens — Authentic Tagine Beverly Hills Palette ─── */
+:root {
+  /* Signature Olive Gold Accent */
+  --gold:          #94BA26;
+  --gold-light:    #A8D126;
+  --gold-dark:     #789B19;
+  --gold-sheen:    #D6F066;
+
+  /* Sophisticated Velvet Charcoal & Midnight Backgrounds */
+  --midnight:      #121312;
+  --charcoal:      #181918;
+  --charcoal-mid:  #222422;
+  --charcoal-light:#2B2E2B;
+
+  /* Typography Colors */
+  --cream:         #FFFFFF;
+  --cream-soft:    #EFECE6;
+  --cream-muted:   #9C9B94;
+
+  /* Card and Border surfaces */
+  --card-bg:       rgba(32, 34, 32, 0.75);
+  --card-border:   rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Reset (Do not reset margin/padding on * as it overrides Tailwind CSS :where() utilities) ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  background-color: var(--charcoal);
+  color: var(--cream-soft);
+}
+
+body {
+  background-color: var(--charcoal);
+  color: var(--cream-soft);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+a, button {
+  cursor: pointer;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #121312; }
+::-webkit-scrollbar-thumb { background: #2B2E2B; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+::selection { background: rgba(148, 186, 38, 0.35); color: #FFFFFF; }
+
+/* ─── Typography helpers ─── */
+.font-script  { font-family: 'Great Vibes', cursive; }
+.font-display { font-family: 'Cormorant Garamond', serif; }
+.font-cinzel  { font-family: 'Cinzel', serif; }
+
+/* ─── Responsive Container ─── */
+.site-container {
+  width: 100%;
+  max-width: 1380px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+@media (min-width: 768px) {
+  .site-container {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .site-container {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+}
+
+/* ─── Ambient Glow Utilities ─── */
+.ambient-glow-top {
+  background: radial-gradient(circle at 50% -10%, rgba(148, 186, 38, 0.12) 0%, transparent 65%);
+}
+
+.ambient-glow-center {
+  background: radial-gradient(circle at 50% 50%, rgba(148, 186, 38, 0.08) 0%, transparent 70%);
+}
+
+/* ─── Luxury Cards (UI-UX Pro Max Dark Opulence) ─── */
+.luxury-card {
+  background: linear-gradient(180deg, rgba(35, 37, 35, 0.7) 0%, rgba(25, 27, 25, 0.85) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card:hover {
+  border-color: rgba(148, 186, 38, 0.35);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 30px -5px rgba(148, 186, 38, 0.12);
+  transform: translateY(-3px);
+}
+
+/* ─── Luxury Buttons ─── */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 2.4rem;
+  background: linear-gradient(135deg, #94BA26 0%, #7E9F1E 100%);
+  color: #0E100E;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  border: 1px solid rgba(148, 186, 38, 0.6);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(148, 186, 38, 0.25);
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #A4CE2A 0%, #8DB222 100%);
+  border-color: #A4CE2A;
+  color: #0B0D0B;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(148, 186, 38, 0.4);
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 2.4rem;
+  background: rgba(255, 255, 255, 0.02);
+  color: #FFFFFF;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  border: 1px solid rgba(148, 186, 38, 0.4);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+}
+
+.btn-outline:hover {
+  border-color: var(--gold);
+  background: rgba(148, 186, 38, 0.12);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-outline:active {
+  transform: translateY(0);
+}
+
+/* ─── Luxury Form Inputs (Solid Background, Visible Borders, Generous Padding) ─── */
+.luxury-input {
+  width: 100%;
+  min-height: 52px;
+  background: #191B19;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  padding: 0.85rem 1.25rem;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: dark;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.luxury-input:hover {
+  border-color: rgba(148, 186, 38, 0.5);
+  background: #1D201D;
+}
+
+.luxury-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(148, 186, 38, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  background: #202320;
+}
+
+.luxury-input::placeholder {
+  color: rgba(239, 236, 230, 0.45);
+  font-weight: 300;
+}
+
+select.luxury-input {
+  cursor: pointer;
+}
+
+select.luxury-input option {
+  background: #191B19;
+  color: #FFFFFF;
+  padding: 12px;
+}
+
+/* ─── Interactive Chip & Button Containers (Glassmorphism, Fine Borders, Distinct States) ─── */
+.ui-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(28, 30, 28, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #D4D2C9;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+}
+
+.ui-chip:hover {
+  background: rgba(148, 186, 38, 0.2);
+  border-color: var(--gold);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(148, 186, 38, 0.22);
+}
+
+.ui-chip-active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #0E100E;
+  font-weight: 600;
+  box-shadow: 0 0 22px rgba(148, 186, 38, 0.45);
+}
+
+/* ─── Gold Divider Accent ─── */
+.gold-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.gold-divider::before,
+.gold-divider::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  max-width: 120px;
+  background: linear-gradient(90deg, transparent, rgba(148, 186, 38, 0.5));
+}
+.gold-divider::after {
+  background: linear-gradient(90deg, rgba(148, 186, 38, 0.5), transparent);
+}
