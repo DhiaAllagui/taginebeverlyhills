@@ -3,7 +3,7 @@ import "./globals.css";
 import { Suspense } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import PageLoader from "./components/PageLoader";
+import LoadingBar from "./components/LoadingBar";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -119,7 +119,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col antialiased bg-[#262726] text-[#ECEAE4]">
         <Suspense fallback={null}>
-          <PageLoader />
+          <LoadingBar />
         </Suspense>
         <Navbar />
         <main className="flex-1">
