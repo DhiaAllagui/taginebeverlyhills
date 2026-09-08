@@ -168,6 +168,9 @@ export default function ContactPage() {
               style={{ border: 0, filter: "invert(90%) hue-rotate(180deg) saturate(0.3) brightness(0.9)" }}
             />
 
+            {/* Block map interactions */}
+            <div className="absolute inset-0 z-[5]" aria-hidden="true" />
+
             {/* Restaurant marker label */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full z-10 flex flex-col items-center pointer-events-none">
               <div className="px-3 py-1.5 rounded-lg bg-[#141514]/90 border border-[#94BA26]/50 text-[#EFECE6] text-[10px] uppercase tracking-wider font-medium whitespace-nowrap shadow-lg backdrop-blur-sm">
