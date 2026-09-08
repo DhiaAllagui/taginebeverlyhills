@@ -7,7 +7,7 @@ import { Sparkles, Heart, ArrowRight } from "lucide-react";
 
 export default function ChefBenPage() {
   return (
-    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] py-32 sm:py-40 lg:py-48 overflow-hidden">
+    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] py-20 sm:py-28 lg:py-48 overflow-hidden">
       {/* Ambient Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] ambient-glow-top pointer-events-none" />
 
@@ -17,7 +17,7 @@ export default function ChefBenPage() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-20 lg:mb-28"
+          className="text-center mb-14 sm:mb-20 lg:mb-28"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-[#94BA26]/30 mb-5">
             <Sparkles size={13} className="text-[#94BA26]" />
@@ -27,7 +27,7 @@ export default function ChefBenPage() {
           </div>
 
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl text-white font-light tracking-wide mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-4"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             Chef <span className="text-[#94BA26] italic">&apos;Ben&apos;</span> Benameur
@@ -39,7 +39,7 @@ export default function ChefBenPage() {
         </motion.div>
 
         {/* ─── Portrait & Story Grid ─── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20 items-center mb-28 lg:mb-36">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-14 lg:gap-20 items-center mb-20 sm:mb-28 lg:mb-36">
           {/* Portrait with luxury frame */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -77,7 +77,7 @@ export default function ChefBenPage() {
             {/* Signature Quote */}
             <div className="luxury-card p-6 sm:p-8 border-l-4 border-l-[#94BA26]">
               <p
-                className="text-[#94BA26] text-2xl sm:text-3xl font-normal leading-snug mb-3"
+                className="text-[#94BA26] text-xl sm:text-2xl lg:text-3xl font-normal leading-snug mb-3"
                 style={{ fontFamily: "'Great Vibes', cursive" }}
               >
                 &ldquo;All I want is a warm place where the food is made with love.&rdquo;
@@ -88,7 +88,7 @@ export default function ChefBenPage() {
             </div>
 
             <h2
-              className="text-2xl sm:text-3xl text-white font-light"
+              className="text-xl sm:text-2xl lg:text-3xl text-white font-light"
               style={{ fontFamily: "'Cormorant Garamond', serif" }}
             >
               Heritage, Passion & Beverly Hills
@@ -128,7 +128,7 @@ export default function ChefBenPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-20 sm:pt-24 border-t border-white/10"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 pt-14 sm:pt-20 lg:pt-24 border-t border-white/10"
         >
           <div className="luxury-card overflow-hidden group">
             <div className="relative aspect-[4/3]">

@@ -31,8 +31,22 @@ export default function HomePage() {
   return (
     <div className="flex flex-col bg-[#141514] text-[#EFECE6] overflow-hidden">
       {/* ─── Hero Section (Dramatic, Candlelit, Warm) ─── */}
-      <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 py-36 sm:py-44 lg:py-52 ambient-glow-top">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#94BA26]/10 rounded-full blur-[140px] pointer-events-none" />
+      <section className="relative -mt-20 md:-mt-44 min-h-[88vh] sm:min-h-[92vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-32 md:pt-52 pb-24 md:pb-44 lg:pb-52 ambient-glow-top">
+        {/* Background image with dark overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/p1000898-2048x1152.jpg"
+            alt="Tagine Beverly Hills ambiance"
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#141514]/35 via-[#141514]/55 to-[#141514]/85" />
+          <div className="absolute inset-0 bg-[#141514]/20" />
+        </div>
+
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[600px] h-[220px] sm:h-[350px] bg-[#94BA26]/10 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none z-[1]" />
 
         <div className="site-container max-w-4xl relative z-10 flex flex-col items-center">
           {/* Poetic Quote */}
@@ -40,10 +54,10 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[#94BA26] leading-snug mb-8"
+            className="text-[#94BA26] leading-snug mb-6 sm:mb-8 px-2 sm:px-0"
             style={{
               fontFamily: "'Great Vibes', cursive",
-              fontSize: "clamp(2.6rem, 5.5vw, 4.8rem)",
+              fontSize: "clamp(2.2rem, 8vw, 4.8rem)",
               fontWeight: 400,
               textShadow: "0 0 40px rgba(148, 186, 38, 0.25)",
             }}
@@ -56,10 +70,10 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-white uppercase tracking-[0.35em] font-normal mb-12"
+            className="text-white uppercase tracking-[0.25em] sm:tracking-[0.35em] font-normal mb-8 sm:mb-12"
             style={{
               fontFamily: "'Cinzel', serif",
-              fontSize: "clamp(1.1rem, 2.2vw, 1.55rem)",
+              fontSize: "clamp(0.95rem, 3vw, 1.55rem)",
             }}
           >
             CHEF &apos;BEN&apos; BENAMEUR
@@ -70,7 +84,7 @@ export default function HomePage() {
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="mb-14 relative"
+            className="mb-10 sm:mb-14 relative"
           >
             <div className="absolute inset-0 bg-[#94BA26]/15 blur-xl rounded-full scale-110 pointer-events-none" />
             <div className="relative">
@@ -83,7 +97,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex flex-wrap items-center justify-center gap-5 mb-12"
+            className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-5 mb-10 sm:mb-12"
           >
             <Link href="/reservations" className="btn-gold py-3.5 px-8 text-xs tracking-[0.2em]">
               Reserve a Table
@@ -97,7 +111,7 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.65 }}
-            className="text-[#9C9B94] text-xs uppercase tracking-[0.28em] font-light flex items-center gap-3 pt-2"
+            className="text-[#9C9B94] text-[11px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.28em] font-light flex flex-col sm:flex-row items-center gap-1 sm:gap-3 pt-2"
           >
             <span>132 N Robertson Blvd</span>
             <span className="text-[#94BA26]">✦</span>
@@ -107,9 +121,9 @@ export default function HomePage() {
       </section>
 
       {/* ─── Discover Our Story (Official Authentic Copy) ─── */}
-      <section className="py-36 lg:py-48 bg-[#181918] border-t border-white/5 relative">
+      <section className="py-20 sm:py-28 lg:py-48 bg-[#181918] border-t border-white/5 relative">
         <div className="site-container max-w-5xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-center">
             {/* Real Ambiance Photo */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -143,7 +157,7 @@ export default function HomePage() {
                 <span className="text-[#94BA26] text-xs uppercase tracking-[0.3em] font-semibold block mb-3" style={{ fontFamily: "'Cinzel', serif" }}>
                   Discover
                 </span>
-                <h2 className="text-4xl sm:text-5xl text-white font-light tracking-wide" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl text-white font-light tracking-wide" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                   Our Story
                 </h2>
               </div>
@@ -154,7 +168,7 @@ export default function HomePage() {
                 <span className="h-[1px] w-16 bg-gradient-to-r from-[#94BA26]/60 to-transparent" />
               </div>
 
-              <p className="text-[#EFECE6]/90 text-base sm:text-lg leading-relaxed font-light">
+              <p className="text-[#EFECE6]/90 text-sm sm:text-base lg:text-lg leading-relaxed font-light">
                 Tagine is a secluded hideaway in the heart of Beverly Hills and the perfect place for leaving your worries and hunger behind. Step inside the intimate space created so that you can feel at home.
               </p>
 
@@ -174,19 +188,19 @@ export default function HomePage() {
       </section>
 
       {/* ─── Culinary Delight (Official Authentic Copy & Signature Flavors) ─── */}
-      <section className="py-40 lg:py-52 bg-[#141514] border-t border-white/5 relative ambient-glow-center">
+      <section className="py-24 sm:py-32 lg:py-52 bg-[#141514] border-t border-white/5 relative ambient-glow-center">
         <div className="site-container max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="text-center mb-20 lg:mb-28 max-w-2xl mx-auto"
+            className="text-center mb-14 sm:mb-20 lg:mb-28 max-w-2xl mx-auto"
           >
             <span className="text-[#94BA26] text-xs uppercase tracking-[0.3em] font-semibold block mb-3" style={{ fontFamily: "'Cinzel', serif" }}>
               Culinary
             </span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl text-white font-light tracking-wide mb-4" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-4" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
               Delight
             </h2>
             <div className="flex items-center justify-center gap-3 text-[#94BA26] text-lg my-5 select-none">
@@ -200,7 +214,7 @@ export default function HomePage() {
           </motion.div>
 
           {/* 3 Dishes with ample padding & breathing space */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-10 mb-20 lg:mb-24">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 mb-14 sm:mb-20 lg:mb-24">
             {dishes.map((item, idx) => (
               <motion.div
                 key={item.title}
@@ -250,7 +264,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── Private Events Teaser Ribbon (Generous Breathing Room) ─── */}
-      <section className="py-28 lg:py-40 bg-[#181918] border-t border-white/5 relative mb-16">
+      <section className="py-20 sm:py-28 lg:py-40 bg-[#181918] border-t border-white/5 relative mb-8 sm:mb-16">
         <div className="site-container max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

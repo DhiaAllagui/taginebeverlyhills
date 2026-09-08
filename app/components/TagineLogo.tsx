@@ -11,23 +11,23 @@ export default function TagineLogo({
   size = "md",
   className = "",
 }: TagineLogoProps) {
-  const dimensions = {
-    sm: { width: 140, height: 38 },
-    md: { width: 190, height: 52 },
-    lg: { width: 240, height: 66 },
-    hero: { width: 320, height: 88 },
+  // Responsive max-widths that scale down on mobile while keeping aspect ratio
+  const maxWidth = {
+    sm: "max-w-[110px] sm:max-w-[140px]",
+    md: "max-w-[150px] sm:max-w-[190px]",
+    lg: "max-w-[190px] sm:max-w-[240px]",
+    hero: "max-w-[240px] sm:max-w-[280px] md:max-w-[320px]",
   }[size];
 
   return (
-    <div className={`inline-flex items-center select-none ${className}`}>
+    <div className={`inline-flex items-center select-none ${maxWidth} ${className}`}>
       <Image
         src="/images/tagine_logo_2026.png"
         alt="Tagine Beverly Hills"
-        width={dimensions.width}
-        height={dimensions.height}
+        width={320}
+        height={88}
         priority
-        className="h-auto object-contain"
-        style={{ width: dimensions.width, height: "auto" }}
+        className="w-full h-auto object-contain"
       />
     </div>
   );

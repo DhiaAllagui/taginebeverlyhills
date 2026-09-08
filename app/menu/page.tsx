@@ -132,7 +132,7 @@ export default function MenuPage() {
       : menuData.filter((sec) => sec.category === activeCategory);
 
   return (
-    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] py-32 sm:py-40 lg:py-48 overflow-hidden">
+    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] py-20 sm:py-28 lg:py-48 overflow-hidden">
       {/* Ambient Lighting */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] ambient-glow-top pointer-events-none" />
 
@@ -142,7 +142,7 @@ export default function MenuPage() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-20 lg:mb-28"
+          className="text-center mb-14 sm:mb-20 lg:mb-28"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-[#94BA26]/30 mb-6">
             <Sparkles size={13} className="text-[#94BA26]" />
@@ -152,7 +152,7 @@ export default function MenuPage() {
           </div>
 
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl text-white font-light tracking-wide mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-6"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             Dinner <span className="text-[#94BA26] italic">Menu</span>
@@ -197,7 +197,7 @@ export default function MenuPage() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="flex flex-wrap items-center justify-center gap-3.5 sm:gap-5 mb-28 lg:mb-36 pt-6"
+          className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-5 mb-16 sm:mb-28 lg:mb-36 pt-4 sm:pt-6"
         >
           {["All", "Mezzes & Starters", "Signature Tagines", "Couscous & Grills", "Desserts & Tea"].map((cat) => {
             const isSelected = activeCategory === cat;
@@ -205,7 +205,7 @@ export default function MenuPage() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-7 sm:px-8 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm tracking-wider transition-all duration-300 border shadow-sm ${
+                className={`px-4 sm:px-8 py-2.5 sm:py-4 rounded-full text-[11px] sm:text-sm tracking-wider transition-all duration-300 border shadow-sm ${
                   isSelected
                     ? "bg-[#94BA26] text-[#0E100E] border-[#94BA26] font-semibold shadow-[0_0_22px_rgba(148,186,38,0.45)]"
                     : "bg-zinc-900/80 border-zinc-700/50 text-[#D4D2C9] hover:bg-[#94BA26]/20 hover:border-[#94BA26] hover:text-white hover:-translate-y-0.5"
@@ -218,7 +218,7 @@ export default function MenuPage() {
         </motion.div>
 
         {/* ─── Menu Sections with Generous Padding ─── */}
-        <div className="flex flex-col gap-24 lg:gap-36">
+        <div className="flex flex-col gap-16 sm:gap-24 lg:gap-36">
           <AnimatePresence mode="wait">
             {filteredCategories.map((section, sIdx) => (
               <motion.div
@@ -227,10 +227,10 @@ export default function MenuPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.5, delay: sIdx * 0.1 }}
-                className="luxury-card p-10 sm:p-16 lg:p-24 shadow-2xl"
+                className="luxury-card p-6 sm:p-10 lg:p-16 xl:p-24 shadow-2xl"
               >
                 {/* Category Title */}
-                <div className="text-center mb-14 pb-8 border-b border-white/10">
+                <div className="text-center mb-10 sm:mb-14 pb-6 sm:pb-8 border-b border-white/10">
                   <span className="text-[#94BA26] text-xs uppercase tracking-[0.28em] font-semibold block mb-3" style={{ fontFamily: "'Cinzel', serif" }}>
                     {section.category}
                   </span>
@@ -240,29 +240,28 @@ export default function MenuPage() {
                 </div>
 
                 {/* Items with generous vertical gaps */}
-                <div className="flex flex-col gap-10 sm:gap-12">
+                <div className="flex flex-col gap-8 sm:gap-10 lg:gap-12">
                   {section.items.map((item) => (
                     <div
                       key={item.name}
-                      className="group flex flex-col gap-3 pb-10 sm:pb-12 border-b border-white/5 last:border-0 last:pb-0"
+                      className="group flex flex-col gap-2.5 sm:gap-3 pb-8 sm:pb-10 lg:pb-12 border-b border-white/5 last:border-0 last:pb-0"
                     >
-                      <div className="flex items-baseline justify-between gap-4">
-                        <div className="flex items-center gap-3">
+                      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3">
                           <span
-                            className="text-xl sm:text-2xl text-white font-light group-hover:text-[#94BA26] transition-colors"
+                            className="text-lg sm:text-xl lg:text-2xl text-white font-light group-hover:text-[#94BA26] transition-colors"
                             style={{ fontFamily: "'Cormorant Garamond', serif" }}
                           >
                             {item.name}
                           </span>
                           {item.tag && (
-                            <span className="hidden sm:inline-block text-[9px] uppercase tracking-wider px-3 py-1 rounded-full bg-[#94BA26]/10 text-[#94BA26] border border-[#94BA26]/30">
+                            <span className="self-start sm:self-auto text-[9px] uppercase tracking-wider px-2.5 sm:px-3 py-1 rounded-full bg-[#94BA26]/10 text-[#94BA26] border border-[#94BA26]/30">
                               {item.tag}
                             </span>
                           )}
                         </div>
-                        <span className="flex-1 border-b border-dotted border-white/15 mx-4 hidden sm:block" />
                         <span
-                          className="text-lg text-[#94BA26] font-medium"
+                          className="text-base sm:text-lg text-[#94BA26] font-medium sm:whitespace-nowrap"
                           style={{ fontFamily: "'Cormorant Garamond', serif" }}
                         >
                           {item.price}
@@ -285,7 +284,7 @@ export default function MenuPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mt-36 pt-24 sm:pt-28 border-t border-white/10"
+          className="mt-20 sm:mt-36 pt-16 sm:pt-28 border-t border-white/10"
         >
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             <div className="luxury-card overflow-hidden group">
@@ -336,7 +335,7 @@ export default function MenuPage() {
         </motion.div>
 
         {/* ─── Footer Reassurance & Reservation CTA ─── */}
-        <div className="mt-24 text-center text-xs text-[#9C9B94] font-light flex flex-col items-center gap-8">
+        <div className="mt-16 sm:mt-24 text-center text-xs text-[#9C9B94] font-light flex flex-col items-center gap-6 sm:gap-8 px-2 sm:px-0">
           <p className="flex items-center justify-center gap-2">
             <Check size={15} className="text-[#94BA26]" />
             <span>All meats are 100% Halal certified. Gluten-free and vegan options readily prepared.</span>

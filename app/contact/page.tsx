@@ -23,7 +23,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] py-32 sm:py-40 lg:py-48 overflow-hidden">
+    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] py-20 sm:py-28 lg:py-48 overflow-hidden">
       {/* Ambient Lighting */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] ambient-glow-top pointer-events-none" />
 
@@ -43,7 +43,7 @@ export default function ContactPage() {
           </div>
 
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl text-white font-light tracking-wide mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-4"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             Get in <span className="text-[#94BA26] italic">Touch</span>
@@ -61,12 +61,12 @@ export default function ContactPage() {
         </motion.div>
 
         {/* ─── Info Cards with Generous Spacing ─── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="luxury-card p-8 flex flex-col gap-4"
+            className="luxury-card p-6 sm:p-8 flex flex-col gap-4"
           >
             <div className="w-12 h-12 rounded-full bg-[#94BA26]/10 border border-[#94BA26]/30 flex items-center justify-center text-[#94BA26] mb-2">
               <MapPin size={20} />
@@ -92,7 +92,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="luxury-card p-8 flex flex-col gap-4"
+            className="luxury-card p-6 sm:p-8 flex flex-col gap-4"
           >
             <div className="w-12 h-12 rounded-full bg-[#94BA26]/10 border border-[#94BA26]/30 flex items-center justify-center text-[#94BA26] mb-2">
               <Clock size={20} />
@@ -111,7 +111,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="luxury-card p-8 flex flex-col gap-4"
+            className="luxury-card p-6 sm:p-8 flex flex-col gap-4"
           >
             <div className="w-12 h-12 rounded-full bg-[#94BA26]/10 border border-[#94BA26]/30 flex items-center justify-center text-[#94BA26] mb-2">
               <Phone size={20} />
@@ -132,14 +132,14 @@ export default function ContactPage() {
         </div>
 
         {/* ─── Map & Message Form ─── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
           {/* Map */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-5 luxury-card overflow-hidden aspect-[4/3] lg:aspect-auto lg:h-[480px] shadow-2xl"
+            className="lg:col-span-5 luxury-card overflow-hidden aspect-[4/3] lg:aspect-auto lg:h-[480px] shadow-2xl min-h-[260px]"
           >
             <iframe
               title="Tagine Google Map"
@@ -157,9 +157,9 @@ export default function ContactPage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-7 luxury-card p-8 sm:p-14 lg:p-16 shadow-2xl"
+            className="lg:col-span-7 luxury-card p-6 sm:p-10 lg:p-16 shadow-2xl"
           >
-            <h3 className="text-2xl sm:text-3xl text-white font-light mb-3" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+            <h3 className="text-xl sm:text-2xl lg:text-3xl text-white font-light mb-3" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
               Send a Concierge Note
             </h3>
             <p className="text-xs sm:text-sm text-[#9C9B94] font-light mb-8">
@@ -173,12 +173,12 @@ export default function ContactPage() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
-                  className="py-12 text-center flex flex-col items-center"
+                  className="py-8 sm:py-12 text-center flex flex-col items-center"
                 >
                   <div className="w-16 h-16 rounded-full bg-[#94BA26]/15 border border-[#94BA26] flex items-center justify-center text-[#94BA26] mb-5 shadow-[0_0_20px_rgba(148,186,38,0.3)]">
                     <CheckCircle size={32} />
                   </div>
-                  <h4 className="text-2xl sm:text-3xl text-white font-light mb-2" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                  <h4 className="text-xl sm:text-2xl lg:text-3xl text-white font-light mb-2" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                     Message Received
                   </h4>
                   <p className="text-xs sm:text-sm text-[#9C9B94] mb-8">Our hospitality team will respond to {email} promptly.</p>
@@ -187,7 +187,7 @@ export default function ContactPage() {
                   </button>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-6 sm:gap-8">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-5 sm:gap-6 lg:gap-8">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                     <input
                       type="text"
@@ -252,12 +252,12 @@ export default function ContactPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="luxury-card p-10 text-center"
+          className="luxury-card p-6 sm:p-10 text-center"
         >
           <span className="text-[#94BA26] text-xs uppercase tracking-[0.3em] font-semibold block mb-2" style={{ fontFamily: "'Cinzel', serif" }}>
             Connect
           </span>
-          <h3 className="text-2xl sm:text-3xl text-white font-light mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+          <h3 className="text-xl sm:text-2xl lg:text-3xl text-white font-light mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             Follow Us
           </h3>
           <div className="flex flex-wrap items-center justify-center gap-6">

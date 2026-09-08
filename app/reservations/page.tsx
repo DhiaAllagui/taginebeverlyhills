@@ -46,7 +46,7 @@ export default function ReservationsPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] py-32 sm:py-40 lg:py-48 overflow-hidden">
+    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] py-20 sm:py-28 lg:py-48 overflow-hidden">
       {/* Ambient Lighting */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] ambient-glow-top pointer-events-none" />
 
@@ -56,7 +56,7 @@ export default function ReservationsPage() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center"
+          className="text-center px-2 sm:px-0"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-[#94BA26]/30 mb-6">
             <Sparkles size={13} className="text-[#94BA26]" />
@@ -66,7 +66,7 @@ export default function ReservationsPage() {
           </div>
 
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl text-white font-light tracking-wide mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-6"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             Table <span className="text-[#94BA26] italic">Reservations</span>
@@ -86,7 +86,7 @@ export default function ReservationsPage() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.15 }}
-          className="luxury-card p-8 sm:p-14 lg:p-20 relative shadow-2xl"
+          className="luxury-card p-5 sm:p-10 lg:p-16 xl:p-20 relative shadow-2xl"
         >
           <AnimatePresence mode="wait">
             {submitted ? (
@@ -95,12 +95,12 @@ export default function ReservationsPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
-                className="py-12 text-center flex flex-col items-center"
+                className="py-8 sm:py-12 text-center flex flex-col items-center"
               >
                 <div className="w-16 h-16 rounded-full bg-[#94BA26]/15 border border-[#94BA26] flex items-center justify-center text-[#94BA26] mb-6 shadow-[0_0_30px_rgba(148,186,38,0.3)]">
                   <CheckCircle size={32} />
                 </div>
-                <h2 className="text-3xl sm:text-4xl text-white font-light mb-3" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl text-white font-light mb-3" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                   Reservation Requested
                 </h2>
                 <p className="text-sm text-[#9C9B94] font-light max-w-md mb-8 leading-relaxed">
@@ -110,7 +110,7 @@ export default function ReservationsPage() {
                   <span className="text-white font-medium">{time}</span> ({occasion}).
                 </p>
 
-                <div className="p-6 rounded-xl bg-white/[0.03] border border-white/10 max-w-sm w-full mb-10 text-xs text-[#9C9B94] flex flex-col gap-2.5">
+                <div className="p-4 sm:p-6 rounded-xl bg-white/[0.03] border border-white/10 max-w-sm w-full mb-8 sm:mb-10 text-xs text-[#9C9B94] flex flex-col gap-2.5">
                   <div className="flex justify-between">
                     <span>Guest Contact:</span>
                     <span className="text-white font-medium">{phone}</span>
@@ -133,7 +133,7 @@ export default function ReservationsPage() {
                 </button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-12 sm:gap-16">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-10 sm:gap-12 lg:gap-16">
                 {/* 1. Party Size */}
                 <div>
                   <div className="flex items-center justify-between mb-6">
@@ -144,7 +144,7 @@ export default function ReservationsPage() {
                       {guests === "8+" ? "Private Event / Buyout" : `${guests} Guests Selected`}
                     </span>
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
                     {guestOptions.map((opt) => {
                       const isSelected = guests === opt.val;
                       return (
@@ -152,7 +152,7 @@ export default function ReservationsPage() {
                           key={opt.val}
                           type="button"
                           onClick={() => setGuests(opt.val)}
-                          className={`py-4 px-4 rounded-xl text-xs font-medium transition-all duration-200 border shadow-sm ${
+                          className={`py-3.5 sm:py-4 px-3 sm:px-4 rounded-xl text-[11px] sm:text-xs font-medium transition-all duration-200 border shadow-sm ${
                             isSelected
                               ? "bg-[#94BA26] text-[#0E100E] border-[#94BA26] font-semibold shadow-[0_0_20px_rgba(148,186,38,0.4)]"
                               : "bg-zinc-900/80 border-zinc-700/50 text-[#D4D2C9] hover:bg-[#94BA26]/20 hover:border-[#94BA26] hover:text-white hover:-translate-y-0.5"
@@ -166,7 +166,7 @@ export default function ReservationsPage() {
                 </div>
 
                 {/* 2. Date & Occasion */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
                   <div>
                     <label className="block text-xs uppercase tracking-widest text-[#94BA26] font-medium mb-3.5" style={{ fontFamily: "'Cinzel', serif" }}>
                       2. Choose Date
@@ -200,7 +200,7 @@ export default function ReservationsPage() {
                 </div>
 
                 {/* 3. Seating Time */}
-                <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-6 sm:gap-8">
                   <div className="flex items-center justify-between">
                     <label className="text-xs uppercase tracking-widest text-[#94BA26] font-medium" style={{ fontFamily: "'Cinzel', serif" }}>
                       3. Select Seating Time
@@ -215,7 +215,7 @@ export default function ReservationsPage() {
                     <span className="text-[11px] text-[#9C9B94] uppercase tracking-wider block font-light">
                       Dinner Service (Candlelit)
                     </span>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3 sm:gap-3.5">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2.5 sm:gap-3">
                       {dinnerTimes.map((t) => {
                         const isSelected = time === t;
                         return (
@@ -241,7 +241,7 @@ export default function ReservationsPage() {
                     <span className="text-[11px] text-[#9C9B94] uppercase tracking-wider block font-light">
                       Lunch Service (Tue – Fri)
                     </span>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-3.5">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
                       {lunchTimes.map((t) => {
                         const isSelected = time === t;
                         return (
@@ -264,11 +264,11 @@ export default function ReservationsPage() {
                 </div>
 
                 {/* 4. Guest Details */}
-                <div className="border-t border-white/10 pt-12 flex flex-col gap-8">
+                <div className="border-t border-white/10 pt-10 sm:pt-12 flex flex-col gap-6 sm:gap-8">
                   <label className="block text-xs uppercase tracking-widest text-[#94BA26] font-medium" style={{ fontFamily: "'Cinzel', serif" }}>
                     4. Guest Information
                   </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
                     <div>
                       <input
                         type="text"
@@ -317,7 +317,7 @@ export default function ReservationsPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn-gold w-full sm:w-auto min-w-[320px] py-4 text-xs font-semibold tracking-widest"
+                    className="btn-gold w-full sm:w-auto sm:min-w-[280px] lg:min-w-[320px] py-4 text-xs font-semibold tracking-widest"
                   >
                     {isSubmitting ? "Securing Table..." : "Confirm Table Reservation"}
                   </button>
@@ -336,7 +336,7 @@ export default function ReservationsPage() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="luxury-card p-10 sm:p-14 flex flex-col md:flex-row items-center justify-between gap-8"
+          className="luxury-card p-6 sm:p-10 lg:p-14 flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8"
         >
           <div className="flex items-center gap-5 text-left">
             <div className="w-14 h-14 rounded-full bg-[#94BA26]/10 border border-[#94BA26]/30 flex items-center justify-center text-[#94BA26] shrink-0">

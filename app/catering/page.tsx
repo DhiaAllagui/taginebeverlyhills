@@ -34,7 +34,7 @@ export default function CateringPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] py-32 sm:py-40 lg:py-48 overflow-hidden">
+    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] py-20 sm:py-28 lg:py-48 overflow-hidden">
       {/* Ambient Candlelight Background Lighting */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] ambient-glow-top pointer-events-none" />
       <div className="absolute bottom-1/3 right-0 w-96 h-96 bg-[#94BA26]/5 rounded-full blur-3xl pointer-events-none" />
@@ -45,7 +45,7 @@ export default function CateringPage() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center"
+          className="text-center px-2 sm:px-0"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-[#94BA26]/30 mb-6">
             <Sparkles size={13} className="text-[#94BA26]" />
@@ -55,7 +55,7 @@ export default function CateringPage() {
           </div>
 
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl text-white font-light tracking-wide mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-6"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             Catering & <span className="text-[#94BA26] italic">Buyouts</span>
@@ -71,7 +71,7 @@ export default function CateringPage() {
         </motion.div>
 
         {/* ─── Experiences Showcase (Editorial Cards) ─── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-14">
           {/* Option 1: Buyout */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -95,8 +95,8 @@ export default function CateringPage() {
                 </div>
               </div>
 
-              <div className="p-7 lg:p-8 flex flex-col gap-4">
-                <h3 className="text-2xl lg:text-3xl text-white font-light" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              <div className="p-5 sm:p-7 lg:p-8 flex flex-col gap-4">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl text-white font-light" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                   Full Restaurant Buyout
                 </h3>
                 <p className="text-xs sm:text-sm text-[#9C9B94] font-light leading-relaxed">
@@ -120,7 +120,7 @@ export default function CateringPage() {
               </div>
             </div>
 
-            <div className="p-7 lg:p-8 pt-0">
+            <div className="p-5 sm:p-7 lg:p-8 pt-0">
               <button
                 onClick={() => {
                   setEventType("Restaurant Buyout");
@@ -157,8 +157,8 @@ export default function CateringPage() {
                 </div>
               </div>
 
-              <div className="p-7 lg:p-8 flex flex-col gap-4">
-                <h3 className="text-2xl lg:text-3xl text-white font-light" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              <div className="p-5 sm:p-7 lg:p-8 flex flex-col gap-4">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl text-white font-light" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                   Off-Site Estate Catering
                 </h3>
                 <p className="text-xs sm:text-sm text-[#9C9B94] font-light leading-relaxed">
@@ -182,7 +182,7 @@ export default function CateringPage() {
               </div>
             </div>
 
-            <div className="p-7 lg:p-8 pt-0">
+            <div className="p-5 sm:p-7 lg:p-8 pt-0">
               <button
                 onClick={() => {
                   setEventType("Off-Site Estate");
@@ -204,13 +204,13 @@ export default function CateringPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="luxury-card p-10 sm:p-16 lg:p-20 relative shadow-2xl"
+          className="luxury-card p-6 sm:p-10 lg:p-16 xl:p-20 relative shadow-2xl"
         >
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 sm:mb-14">
             <span className="text-[#94BA26] text-xs uppercase tracking-[0.28em] font-medium block mb-2.5" style={{ fontFamily: "'Cinzel', serif" }}>
               Private Dining Concierge
             </span>
-            <h2 className="text-3xl sm:text-4xl text-white font-light" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl text-white font-light" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
               Request an Event Proposal
             </h2>
             <p className="text-xs sm:text-sm text-[#9C9B94] font-light max-w-md mx-auto mt-3">
@@ -225,12 +225,12 @@ export default function CateringPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
-                className="py-12 text-center flex flex-col items-center"
+                className="py-8 sm:py-12 text-center flex flex-col items-center"
               >
                 <div className="w-16 h-16 rounded-full bg-[#94BA26]/10 border border-[#94BA26] flex items-center justify-center text-[#94BA26] mb-5">
                   <CheckCircle size={32} />
                 </div>
-                <h3 className="text-2xl sm:text-3xl text-white font-light mb-3" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                <h3 className="text-xl sm:text-2xl lg:text-3xl text-white font-light mb-3" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                   Proposal Request Received
                 </h3>
                 <p className="text-sm text-[#9C9B94] max-w-md mb-2 leading-relaxed">
@@ -247,13 +247,13 @@ export default function CateringPage() {
                 </button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-8 sm:gap-10">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-6 sm:gap-8 lg:gap-10">
                 {/* Interactive Event Type Selector */}
                 <div>
                   <label className="block text-xs uppercase tracking-widest text-[#94BA26] font-medium mb-3.5" style={{ fontFamily: "'Cinzel', serif" }}>
                     Select Event Type
                   </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-5">
                     {eventTypes.map((item) => {
                       const isSelected = eventType === item.id;
                       return (
@@ -261,7 +261,7 @@ export default function CateringPage() {
                           key={item.id}
                           type="button"
                           onClick={() => setEventType(item.id)}
-                          className={`p-4 sm:p-5 rounded-xl text-left transition-all duration-300 border shadow-sm ${
+                          className={`p-3.5 sm:p-5 rounded-xl text-left transition-all duration-300 border shadow-sm ${
                             isSelected
                               ? "bg-[#94BA26]/20 border-[#94BA26] text-white shadow-[0_0_18px_rgba(148,186,38,0.25)]"
                               : "bg-zinc-900/80 border-zinc-700/50 text-[#D4D2C9] hover:bg-[#94BA26]/20 hover:border-[#94BA26] hover:text-white hover:-translate-y-0.5"
@@ -280,7 +280,7 @@ export default function CateringPage() {
                   <label className="block text-xs uppercase tracking-widest text-[#94BA26] font-medium mb-3.5" style={{ fontFamily: "'Cinzel', serif" }}>
                     Estimated Guest Count
                   </label>
-                  <div className="flex flex-wrap gap-3.5 sm:gap-4">
+                  <div className="flex flex-wrap gap-2.5 sm:gap-3.5 lg:gap-4">
                     {guestRanges.map((range) => {
                       const isSelected = guests === range;
                       return (
@@ -288,7 +288,7 @@ export default function CateringPage() {
                           key={range}
                           type="button"
                           onClick={() => setGuests(range)}
-                          className={`px-5 py-3 rounded-full text-xs font-medium transition-all duration-300 border shadow-sm ${
+                          className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-full text-[11px] sm:text-xs font-medium transition-all duration-300 border shadow-sm ${
                             isSelected
                               ? "bg-[#94BA26] text-[#0E100E] border-[#94BA26] font-semibold shadow-[0_0_15px_rgba(148,186,38,0.35)]"
                               : "bg-zinc-900/80 border-zinc-700/50 text-[#D4D2C9] hover:bg-[#94BA26]/20 hover:border-[#94BA26] hover:text-white hover:-translate-y-0.5"
@@ -302,7 +302,7 @@ export default function CateringPage() {
                 </div>
 
                 {/* Contact & Date Fields */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
                   <div>
                     <label className="block text-[11px] uppercase tracking-wider text-white/70 font-light mb-2">
                       Full Name *
@@ -332,7 +332,7 @@ export default function CateringPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
                   <div>
                     <label className="block text-[11px] uppercase tracking-wider text-white/70 font-light mb-2">
                       Email Address *
@@ -380,7 +380,7 @@ export default function CateringPage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="btn-gold w-full sm:w-auto min-w-[320px] py-4 text-xs font-semibold tracking-widest"
+                    className="btn-gold w-full sm:w-auto sm:min-w-[280px] lg:min-w-[320px] py-4 text-xs font-semibold tracking-widest"
                   >
                     {submitting ? "Sending Request..." : "Request Proposal"}
                   </button>

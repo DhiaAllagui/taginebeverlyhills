@@ -5,11 +5,11 @@ import { InstagramIcon, FacebookIcon, YelpIcon } from "./SocialIcons";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0D0E0D] border-t border-white/[0.08] pt-24 pb-16 mt-auto relative">
+    <footer className="bg-[#0D0E0D] border-t border-white/[0.08] pt-16 sm:pt-20 lg:pt-24 pb-12 sm:pb-16 mt-auto relative">
       <div className="site-container">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-20 items-start pb-16 border-b border-white/[0.08]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-12 lg:gap-20 items-start pb-12 sm:pb-16 border-b border-white/[0.08]">
           {/* Logo, Address & Socials */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-5 sm:gap-6">
             <TagineLogo size="sm" />
             <p className="text-xs text-[#9C9B94] leading-relaxed font-light">
               132 N Robertson Blvd<br />
@@ -85,7 +85,7 @@ export default function Footer() {
           </div>
 
           {/* Links & Booking */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-4 sm:gap-5">
             <h4 className="text-xs uppercase tracking-[0.25em] text-[#94BA26] font-semibold" style={{ fontFamily: "'Cinzel', serif" }}>
               Explore
             </h4>
@@ -105,7 +105,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-10 flex flex-col sm:flex-row items-center justify-between text-xs text-[#9C9B94]/60 gap-4 font-light">
+        <div className="pt-8 sm:pt-10 flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs text-[#9C9B94]/60 gap-3 sm:gap-4 font-light text-center sm:text-left">
           <p>© {new Date().getFullYear()} Tagine Beverly Hills. All rights reserved.</p>
           <p className="tracking-wider uppercase text-[10px]" style={{ fontFamily: "'Cinzel', serif" }}>
             Authentic Moroccan Fine Dining · Beverly Hills, CA
