@@ -4,6 +4,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import TagineLogo from "../components/TagineLogo";
 import { CheckCircle, Phone, Sparkles, Gift, ArrowRight } from "lucide-react";
+import { openMailto } from "../lib/form-actions";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const amounts = ["$100", "$150", "$250", "$500", "Custom"];
 
@@ -23,10 +25,30 @@ export default function GiftCardsPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    const subject = `Gift Certificate Order — ${displayAmount}`;
+    const body = [
+      `Dear Tagine Concierge,`,
+      ``,
+      `I would like to order a Tagine dining gift certificate.`,
+      ``,
+      `Certificate Value: ${displayAmount}`,
+      recipient ? `Recipient: ${recipient}` : "",
+      personalNote ? `Personal Message:\n${personalNote}` : "",
+      ``,
+      `Purchaser Information:`,
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      `Email: ${email}`,
+      ``,
+      `Please contact me to complete payment and delivery.`,
+    ].join("\n");
+
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
-    }, 600);
+      openMailto(subject, body);
+    }, 800);
   };
 
   return (
@@ -255,10 +277,19 @@ export default function GiftCardsPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="btn-gold w-full sm:w-auto py-4 text-xs font-semibold tracking-widest"
+                      className="btn-gold w-full sm:w-auto py-4 text-xs font-semibold tracking-widest disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                      {isSubmitting ? "Generating Certificate..." : `Request ${displayAmount} Gift Pass`}
-                      <ArrowRight size={14} className="ml-1" />
+                      {isSubmitting ? (
+                        <span className="flex items-center justify-center gap-2">
+                          <LoadingSpinner size="sm" />
+                          Sending...
+                        </span>
+                      ) : (
+                        <>
+                          Request {displayAmount} Gift Pass
+                          <ArrowRight size={14} className="ml-1" />
+                        </>
+                      )}
                     </button>
                   </div>
                 </form>

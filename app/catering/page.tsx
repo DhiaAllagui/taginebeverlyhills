@@ -3,7 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, CheckCircle, Sparkles, Calendar, Users, Wine, Utensils, ArrowRight } from "lucide-react";
+import { Phone, CheckCircle, Sparkles, Users, Wine, Utensils } from "lucide-react";
+import { openMailto } from "../lib/form-actions";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function CateringPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -27,10 +29,32 @@ export default function CateringPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+
+    const subject = `Private Event Proposal — ${eventType} (${guests} guests)`;
+    const body = [
+      `Dear Tagine Private Dining Team,`,
+      ``,
+      `I am interested in hosting a private event at Tagine.`,
+      ``,
+      `Event Type: ${eventType}`,
+      `Estimated Guests: ${guests}`,
+      `Event Date: ${eventDate || "To be determined"}`,
+      ``,
+      `Contact Information:`,
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      `Email: ${email}`,
+      ``,
+      notes ? `Event Details / Notes:\n${notes}` : "",
+      ``,
+      `Please send a customized proposal and available dates.`,
+    ].join("\n");
+
     setTimeout(() => {
       setSubmitting(false);
       setSubmitted(true);
-    }, 600);
+      openMailto(subject, body);
+    }, 800);
   };
 
   return (
@@ -380,9 +404,16 @@ export default function CateringPage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="btn-gold w-full sm:w-auto sm:min-w-[280px] lg:min-w-[320px] py-4 text-xs font-semibold tracking-widest"
+                    className="btn-gold w-full sm:w-auto sm:min-w-[280px] lg:min-w-[320px] py-4 text-xs font-semibold tracking-widest disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    {submitting ? "Sending Request..." : "Request Proposal"}
+                    {submitting ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <LoadingSpinner size="sm" />
+                        Sending...
+                      </span>
+                    ) : (
+                      "Request Proposal"
+                    )}
                   </button>
                 </div>
               </form>

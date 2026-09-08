@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, CheckCircle, Clock, MapPin, Sparkles, Calendar as CalendarIcon, Users, Check } from "lucide-react";
+import { Phone, CheckCircle, Sparkles } from "lucide-react";
+import { openMailto } from "../lib/form-actions";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function ReservationsPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -39,10 +40,30 @@ export default function ReservationsPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    const subject = `Table Reservation Request — ${name} (${guests} guests, ${date})`;
+    const body = [
+      `Dear Tagine Team,`,
+      ``,
+      `I would like to request a table reservation:`,
+      ``,
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      `Email: ${email}`,
+      `Party Size: ${guests} ${guests === "8+" ? "(Private Event / Buyout)" : "guests"}`,
+      `Date: ${date}`,
+      `Time: ${time}`,
+      `Occasion: ${occasion}`,
+      notes ? `Special Requests: ${notes}` : "",
+      ``,
+      `Please confirm at your earliest convenience.`,
+    ].join("\n");
+
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
-    }, 600);
+      openMailto(subject, body);
+    }, 800);
   };
 
   return (
@@ -121,7 +142,7 @@ export default function ReservationsPage() {
                   </div>
                   <div className="flex justify-between">
                     <span>Confirmation:</span>
-                    <span className="text-[#94BA26] font-medium">SMS & Phone verification</span>
+                    <span className="text-[#94BA26] font-medium">Email confirmation</span>
                   </div>
                 </div>
 
@@ -317,9 +338,16 @@ export default function ReservationsPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn-gold w-full sm:w-auto sm:min-w-[280px] lg:min-w-[320px] py-4 text-xs font-semibold tracking-widest"
+                    className="btn-gold w-full sm:w-auto sm:min-w-[280px] lg:min-w-[320px] py-4 text-xs font-semibold tracking-widest disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? "Securing Table..." : "Confirm Table Reservation"}
+                    {isSubmitting ? (
+                      <span className="flex items-center gap-2">
+                        <LoadingSpinner size="sm" />
+                        Sending Request...
+                      </span>
+                    ) : (
+                      "Confirm Table Reservation"
+                    )}
                   </button>
                   <p className="text-[11px] text-[#9C9B94]/70 mt-4 font-light">
                     No deposit required. Our maître d&apos; will send an instant SMS confirmation.

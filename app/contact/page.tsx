@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, CheckCircle, Sparkles, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, CheckCircle, Sparkles } from "lucide-react";
 import { InstagramIcon, FacebookIcon, YelpIcon } from "../components/SocialIcons";
+import { openMailto } from "../lib/form-actions";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -16,10 +18,26 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    const emailSubject = `Tagine Contact Form — ${subject} from ${name}`;
+    const body = [
+      `Dear Tagine Team,`,
+      ``,
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Subject: ${subject}`,
+      ``,
+      `Message:`,
+      message,
+      ``,
+      `Please reply at your earliest convenience.`,
+    ].join("\n");
+
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
-    }, 600);
+      openMailto(emailSubject, body);
+    }, 800);
   };
 
   return (
@@ -235,9 +253,16 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="btn-gold w-full py-4 text-xs font-semibold tracking-widest"
+                      className="btn-gold w-full py-4 text-xs font-semibold tracking-widest disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                      {isSubmitting ? "Transmitting..." : "Send Concierge Message"}
+                      {isSubmitting ? (
+                        <span className="flex items-center justify-center gap-2">
+                          <LoadingSpinner size="sm" />
+                          Sending...
+                        </span>
+                      ) : (
+                        "Send Concierge Message"
+                      )}
                     </button>
                   </div>
                 </form>
