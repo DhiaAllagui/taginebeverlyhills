@@ -157,7 +157,7 @@ export default function ContactPage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-5 luxury-card overflow-hidden aspect-[4/3] lg:aspect-auto lg:h-[480px] shadow-2xl min-h-[260px]"
+            className="lg:col-span-5 luxury-card overflow-hidden aspect-[4/3] lg:aspect-auto lg:h-[480px] shadow-2xl min-h-[260px] relative"
           >
             <iframe
               title="Tagine Google Map"
@@ -167,6 +167,15 @@ export default function ContactPage() {
               loading="lazy"
               style={{ border: 0, filter: "invert(90%) hue-rotate(180deg) saturate(0.3) brightness(0.9)" }}
             />
+
+            {/* Restaurant marker label */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full z-10 flex flex-col items-center pointer-events-none">
+              <div className="px-3 py-1.5 rounded-lg bg-[#141514]/90 border border-[#94BA26]/50 text-[#EFECE6] text-[10px] uppercase tracking-wider font-medium whitespace-nowrap shadow-lg backdrop-blur-sm">
+                Tagine Beverly Hills
+              </div>
+              <div className="w-0.5 h-4 bg-[#94BA26]" />
+              <div className="w-3 h-3 rounded-full bg-[#94BA26] border-2 border-[#141514] shadow-[0_0_10px_rgba(148,186,38,0.8)]" />
+            </div>
           </motion.div>
 
           {/* Form */}
