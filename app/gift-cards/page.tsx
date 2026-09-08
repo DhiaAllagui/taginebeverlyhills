@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import TagineLogo from "../components/TagineLogo";
 import { CheckCircle, Phone, Sparkles, Gift, ArrowRight } from "lucide-react";
@@ -52,7 +53,32 @@ export default function GiftCardsPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] py-20 sm:py-28 lg:py-48 overflow-hidden">
+    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] pt-44 sm:pt-48 md:pt-56 pb-20 sm:pb-28 lg:pb-36 overflow-hidden">
+      {/* Full Page Background Texture — Moroccan Carved Plaster & Zellij */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <Image
+          src="/images/pagesbgnothome.png"
+          alt="Tagine Moroccan pattern background"
+          fill
+          className="object-cover object-center opacity-30"
+          priority
+        />
+        <div className="absolute inset-0 bg-[#141514]/75" />
+      </div>
+
+      {/* Background Hero Banner — Authentic Moroccan Pattern */}
+      <div className="absolute top-0 inset-x-0 h-[640px] z-0 overflow-hidden pointer-events-none">
+        <Image
+          src="/images/pagesbgnothome.png"
+          alt="Tagine Beverly Hills Moroccan pattern hero ambiance"
+          fill
+          className="object-cover object-center opacity-60"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#141514]/40 via-[#141514]/70 to-[#141514]" />
+      </div>
+
       {/* Ambient Lighting */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] ambient-glow-top pointer-events-none" />
 
@@ -89,46 +115,39 @@ export default function GiftCardsPage() {
 
         {/* ─── Visual Certificate & Order Grid ─── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-14 items-center">
-          {/* Certificate Mockup */}
+          {/* Certificate Mockup with official image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-5 flex justify-center"
+            className="lg:col-span-5 flex flex-col items-center gap-4"
           >
-            <div className="w-full max-w-[340px] sm:max-w-[380px] aspect-[1.6/1] bg-gradient-to-br from-[#242624] via-[#1A1B1A] to-[#121312] border-2 border-[#94BA26]/40 p-5 sm:p-7 flex flex-col justify-between rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(148,186,38,0.15)] relative overflow-hidden group">
-              {/* Subtle gold sheen background */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#94BA26]/10 rounded-full blur-2xl pointer-events-none" />
-
-              <div className="flex items-center justify-between relative z-10">
-                <TagineLogo size="sm" />
-                <span className="text-[10px] uppercase tracking-[0.25em] text-[#94BA26] font-semibold px-2.5 py-0.5 rounded-full bg-[#94BA26]/10 border border-[#94BA26]/30" style={{ fontFamily: "'Cinzel', serif" }}>
-                  Dining Certificate
-                </span>
-              </div>
-
-              <div className="text-center my-auto py-2 relative z-10">
-                <span
-                  className="text-3xl sm:text-4xl lg:text-5xl text-white font-light tracking-tight block"
-                  style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                >
-                  {displayAmount}
-                </span>
-                {recipient && (
-                  <p className="text-[11px] text-[#94BA26] italic mt-1 font-light truncate px-2">
-                    Prepared for {recipient}
-                  </p>
-                )}
-                <p className="text-[9px] uppercase tracking-[0.3em] text-[#9C9B94] mt-1 font-medium" style={{ fontFamily: "'Cinzel', serif" }}>
-                  Tagine Beverly Hills
-                </p>
-              </div>
-
-              <div className="flex justify-between items-center text-[9px] text-[#9C9B94] border-t border-white/10 pt-3 uppercase tracking-wider relative z-10">
-                <span>132 N Robertson Blvd</span>
-                <span className="text-[#94BA26]">No Expiration</span>
+            <div className="w-full max-w-[380px] rounded-2xl overflow-hidden border-2 border-[#94BA26]/40 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(148,186,38,0.2)] relative group bg-[#181918]">
+              <div className="relative aspect-[1983/793] w-full">
+                <Image
+                  src="/images/giftcard.png"
+                  alt="Tagine Gift Certificate Card"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-2.5 right-3.5 flex items-center gap-2">
+                  <span className="text-xl sm:text-2xl text-white font-light tracking-wide bg-[#141514]/85 px-3 py-0.5 rounded-lg border border-[#94BA26]/40" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                    {displayAmount}
+                  </span>
+                </div>
               </div>
             </div>
+            {recipient && (
+              <p className="text-xs text-[#94BA26] italic text-center">
+                Prepared for {recipient}
+              </p>
+            )}
+            <p className="text-[11px] text-[#9C9B94] text-center font-light">
+              Redeemable for dinner, tasting menus, and private wine pairings. Never expires.
+            </p>
           </motion.div>
 
           {/* Form */}

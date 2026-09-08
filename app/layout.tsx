@@ -3,7 +3,7 @@ import "./globals.css";
 import { Suspense } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import LoadingBar from "./components/LoadingBar";
+import MobileBottomBar from "./components/MobileBottomBar";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -45,11 +45,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/images/logofavicon.png" },
+      { url: "/images/logofaviconwhite.png" },
       { url: "/icon.png" },
     ],
-    apple: "/images/logofavicon.png",
-    shortcut: "/images/logofavicon.png",
+    apple: "/images/logofaviconwhite.png",
+    shortcut: "/images/logofaviconwhite.png",
   },
 };
 
@@ -117,15 +117,13 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantSchema) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col antialiased bg-[#262726] text-[#ECEAE4]">
-        <Suspense fallback={null}>
-          <LoadingBar />
-        </Suspense>
+      <body className="min-h-screen flex flex-col antialiased bg-[#141514] text-[#ECEAE4]">
         <Navbar />
-        <main className="flex-1">
+        <main className="flex-1 pb-16 md:pb-0">
           {children}
         </main>
         <Footer />
+        <MobileBottomBar />
       </body>
     </html>
   );

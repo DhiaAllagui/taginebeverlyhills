@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import TagineLogo from "./components/TagineLogo";
+import ClientReviews from "./components/ClientReviews";
 import { Sparkles, ArrowRight, Utensils, Clock, Heart } from "lucide-react";
 
 export default function HomePage() {
@@ -31,19 +32,21 @@ export default function HomePage() {
   return (
     <div className="flex flex-col bg-[#141514] text-[#EFECE6] overflow-hidden">
       {/* ─── Hero Section (Dramatic, Candlelit, Warm) ─── */}
-      <section className="relative -mt-20 md:-mt-44 min-h-[88vh] sm:min-h-[92vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-32 md:pt-52 pb-24 md:pb-44 lg:pb-52 ambient-glow-top">
-        {/* Background image with dark overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/p1000898-2048x1152.jpg"
-            alt="Tagine Beverly Hills ambiance"
-            fill
-            className="object-cover"
-            sizes="100vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#141514]/35 via-[#141514]/55 to-[#141514]/85" />
-          <div className="absolute inset-0 bg-[#141514]/20" />
+      <section className="relative min-h-[95vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-48 sm:pt-52 md:pt-60 pb-20 sm:pb-28 ambient-glow-top">
+        {/* Background video with luxury dark overlay */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/images/p1000898-2048x1152.jpg"
+            className="w-full h-full object-cover scale-105"
+          >
+            <source src="/images/background_video.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#141514]/40 via-[#141514]/55 to-[#141514]/90" />
+          <div className="absolute inset-0 bg-[#141514]/25" />
         </div>
 
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[600px] h-[220px] sm:h-[350px] bg-[#94BA26]/10 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none z-[1]" />
@@ -117,6 +120,60 @@ export default function HomePage() {
             <span className="text-[#94BA26]">✦</span>
             <span>Beverly Hills, CA</span>
           </motion.p>
+        </div>
+      </section>
+
+      {/* ─── Press & Acclaim Ribbon with Authentic Moroccan Zellij Mosaic ─── */}
+      <section className="relative z-10 bg-[#0E0F0E] border-y-2 border-[#94BA26]/40 py-12 sm:py-16 shadow-[0_16px_40px_rgba(0,0,0,0.7)] overflow-hidden">
+        {/* Highly Visible Authentic Moroccan Mosaic Pattern Background */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <Image
+            src="/images/moroccopattern.png"
+            alt="Authentic Moroccan zellij mosaic pattern"
+            fill
+            className="object-cover object-center opacity-65"
+          />
+          {/* Gentle edge shading to harmonize with dark theme */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0E0F0E]/75 via-[#0E0F0E]/25 to-[#0E0F0E]/75" />
+        </div>
+
+        <div className="site-container max-w-4xl relative z-10">
+          <div className="bg-[#141514]/85 backdrop-blur-md border border-[#94BA26]/40 rounded-2xl p-6 sm:p-10 shadow-[0_12px_36px_rgba(0,0,0,0.85)] flex flex-col items-center text-center gap-6">
+            {/* Main Press Quote */}
+            <div className="max-w-2xl px-2">
+              <span className="text-[#94BA26] text-[10px] sm:text-xs uppercase tracking-[0.3em] font-semibold block mb-3" style={{ fontFamily: "'Cinzel', serif" }}>
+                Critical Acclaim
+              </span>
+              <blockquote
+                className="text-lg sm:text-xl md:text-2xl text-white font-light italic leading-relaxed"
+                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+              >
+                &ldquo;A hidden jewel in Beverly Hills where Moroccan gastronomy reaches artful heights.&rdquo;
+              </blockquote>
+              <cite className="text-[#9C9B94] text-[11px] sm:text-xs uppercase tracking-[0.2em] font-normal not-italic block mt-3">
+                — Los Angeles Times
+              </cite>
+            </div>
+
+            {/* Badges & Mentions */}
+            <div className="w-full pt-5 border-t border-white/[0.08] flex flex-wrap items-center justify-center gap-5 sm:gap-8 lg:gap-10 text-[10px] sm:text-xs uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[#EFECE6]/90 font-medium">
+              <span className="flex items-center gap-1.5 hover:text-[#94BA26] transition-colors">
+                <span className="text-[#94BA26]">★</span> Zagat Rated
+              </span>
+              <span className="text-white/20 hidden sm:inline">✦</span>
+              <span className="flex items-center gap-1.5 hover:text-[#94BA26] transition-colors">
+                <span className="text-[#94BA26]">★</span> OpenTable Diners&apos; Choice
+              </span>
+              <span className="text-white/20 hidden sm:inline">✦</span>
+              <span className="hover:text-[#94BA26] transition-colors">
+                Los Angeles Times
+              </span>
+              <span className="text-white/20 hidden sm:inline">✦</span>
+              <span className="hover:text-[#94BA26] transition-colors">
+                The Hollywood Reporter
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -263,6 +320,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─── Real Guest Reviews & Reflections ─── */}
+      <ClientReviews />
+
       {/* ─── Private Events Teaser Ribbon (Generous Breathing Room) ─── */}
       <section className="py-20 sm:py-28 lg:py-40 bg-[#181918] border-t border-white/5 relative mb-8 sm:mb-16">
         <div className="site-container max-w-5xl">
@@ -271,9 +331,20 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="luxury-card p-10 sm:p-14 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-8"
+            className="luxury-card p-10 sm:p-14 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden group"
           >
-            <div className="flex flex-col gap-3 text-center md:text-left">
+            {/* Authentic Moroccan Zellij Mosaic Accent */}
+            <div className="absolute inset-0 z-0 pointer-events-none opacity-50 group-hover:opacity-65 transition-opacity duration-700">
+              <Image
+                src="/images/moroccopattern.png"
+                alt="Moroccan mosaic pattern"
+                fill
+                className="object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#141514]/90 via-[#141514]/50 to-[#141514]/90" />
+            </div>
+
+            <div className="flex flex-col gap-3 text-center md:text-left relative z-10">
               <span className="text-[#94BA26] text-xs uppercase tracking-[0.25em] font-medium block" style={{ fontFamily: "'Cinzel', serif" }}>
                 Exclusive Celebrations
               </span>
@@ -285,7 +356,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <Link href="/catering" className="btn-gold text-xs px-8 py-4 shrink-0 tracking-[0.18em]">
+            <Link href="/catering" className="btn-gold text-xs px-8 py-4 shrink-0 tracking-[0.18em] relative z-10">
               Private Dining & Buyouts
             </Link>
           </motion.div>

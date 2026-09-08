@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, CheckCircle, Sparkles, Users, Wine, Utensils } from "lucide-react";
-import { openMailto } from "../lib/form-actions";
+import { submitInquiry } from "../lib/form-actions";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function CateringPage() {
@@ -26,39 +26,57 @@ export default function CateringPage() {
 
   const guestRanges = ["10 – 20", "20 – 35", "35 – 75", "75 – 150", "150+"];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
 
-    const subject = `Private Event Proposal — ${eventType} (${guests} guests)`;
-    const body = [
-      `Dear Tagine Private Dining Team,`,
-      ``,
-      `I am interested in hosting a private event at Tagine.`,
-      ``,
-      `Event Type: ${eventType}`,
-      `Estimated Guests: ${guests}`,
-      `Event Date: ${eventDate || "To be determined"}`,
-      ``,
-      `Contact Information:`,
-      `Name: ${name}`,
-      `Phone: ${phone}`,
-      `Email: ${email}`,
-      ``,
-      notes ? `Event Details / Notes:\n${notes}` : "",
-      ``,
-      `Please send a customized proposal and available dates.`,
-    ].join("\n");
-
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      await submitInquiry({
+        formType: "Private Dining & Catering Proposal",
+        name,
+        phone,
+        email,
+        eventType,
+        guests,
+        eventDate,
+        notes,
+      });
       setSubmitted(true);
-      openMailto(subject, body);
-    }, 800);
+    } catch (err) {
+      console.error("Catering submission error:", err);
+      setSubmitted(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
-    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] py-20 sm:py-28 lg:py-48 overflow-hidden">
+    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] pt-44 sm:pt-48 md:pt-56 pb-20 sm:pb-28 lg:pb-36 overflow-hidden">
+      {/* Full Page Background Texture — Moroccan Carved Plaster & Zellij */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <Image
+          src="/images/pagesbgnothome.png"
+          alt="Tagine Moroccan pattern background"
+          fill
+          className="object-cover object-center opacity-30"
+          priority
+        />
+        <div className="absolute inset-0 bg-[#141514]/75" />
+      </div>
+
+      {/* Background Hero Banner — Authentic Moroccan Pattern */}
+      <div className="absolute top-0 inset-x-0 h-[640px] z-0 overflow-hidden pointer-events-none">
+        <Image
+          src="/images/pagesbgnothome.png"
+          alt="Tagine Beverly Hills Moroccan pattern hero ambiance"
+          fill
+          className="object-cover object-center opacity-60"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#141514]/40 via-[#141514]/70 to-[#141514]" />
+      </div>
+
       {/* Ambient Candlelight Background Lighting */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] ambient-glow-top pointer-events-none" />
       <div className="absolute bottom-1/3 right-0 w-96 h-96 bg-[#94BA26]/5 rounded-full blur-3xl pointer-events-none" />

@@ -7,7 +7,32 @@ import { Sparkles, Heart, ArrowRight } from "lucide-react";
 
 export default function ChefBenPage() {
   return (
-    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] py-20 sm:py-28 lg:py-48 overflow-hidden">
+    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] pt-44 sm:pt-48 md:pt-56 pb-20 sm:pb-28 lg:pb-36 overflow-hidden">
+      {/* Full Page Background Texture — Moroccan Carved Plaster & Zellij */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <Image
+          src="/images/pagesbgnothome.png"
+          alt="Tagine Moroccan pattern background"
+          fill
+          className="object-cover object-center opacity-30"
+          priority
+        />
+        <div className="absolute inset-0 bg-[#141514]/75" />
+      </div>
+
+      {/* Background Hero Ambiance — Authentic Moroccan Zellij Pattern */}
+      <div className="absolute top-0 inset-x-0 h-[640px] z-0 overflow-hidden pointer-events-none">
+        <Image
+          src="/images/pagesbgnothome.png"
+          alt="Tagine Beverly Hills Moroccan pattern hero ambiance"
+          fill
+          className="object-cover object-center opacity-60"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#141514]/40 via-[#141514]/70 to-[#141514]" />
+      </div>
+
       {/* Ambient Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] ambient-glow-top pointer-events-none" />
 
@@ -103,6 +128,14 @@ export default function ChefBenPage() {
               &ldquo;Food that I could eat every day for the rest of my life.&rdquo;
               <span className="block not-italic text-[10px] uppercase tracking-wider text-[#94BA26] mt-1 font-medium">
                 — Ryan Gosling, Co-Owner
+              </span>
+            </div>
+
+            {/* Patron Reflection */}
+            <div className="p-4 rounded-lg bg-white/[0.02] border border-[#94BA26]/20 text-xs text-[#EFECE6]/80 italic font-light">
+              &ldquo;The chef personally brought out several courses and explained the spices and ingredients. A truly beautiful personal touch!&rdquo;
+              <span className="block not-italic text-[10px] uppercase tracking-wider text-[#94BA26] mt-1 font-medium">
+                — Rick S., Verified Diner Review
               </span>
             </div>
 

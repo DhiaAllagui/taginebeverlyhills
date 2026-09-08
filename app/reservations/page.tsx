@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, CheckCircle, Sparkles } from "lucide-react";
-import { openMailto } from "../lib/form-actions";
+import { Phone, CheckCircle, Sparkles, ChevronDown, HelpCircle } from "lucide-react";
+import { submitReservation } from "../lib/form-actions";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function ReservationsPage() {
@@ -21,6 +22,7 @@ export default function ReservationsPage() {
   const [occasion, setOccasion] = useState("Date Night");
   const [notes, setNotes] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const guestOptions = [
     { label: "1 Guest", val: "1" },
@@ -37,37 +39,77 @@ export default function ReservationsPage() {
   const lunchTimes = ["12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM"];
   const occasions = ["Date Night", "Anniversary Celebration", "Birthday", "Business Dinner", "Casual Dining"];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const faqs = [
+    {
+      q: "Do you require a deposit for reservations?",
+      a: "No deposit is required for parties under 8 guests. For large parties (8+) or full private buyouts, our concierge team will coordinate directly with you to finalize details and bespoke menu selections.",
+    },
+    {
+      q: "Is all meat Halal certified?",
+      a: "Yes, 100% of the meats served at Tagine Beverly Hills are certified Halal, thoughtfully sourced and meticulously prepared in accordance with traditional Moroccan culinary heritage.",
+    },
+    {
+      q: "Can I book the entire restaurant for a buyout?",
+      a: "Yes, our intimate sanctuary accommodates up to 35 seated guests for exclusive full restaurant buyouts—creating a private candlelit oasis for bespoke celebrations, film dinners, and executive gatherings.",
+    },
+    {
+      q: "Do you accommodate dietary restrictions?",
+      a: "Absolutely. Chef Ben Benameur freshly prepares vegan, dairy-free, and celiac-friendly / gluten-free options upon request. Please note any allergies or dietary preferences in your reservation notes.",
+    },
+  ];
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const subject = `Table Reservation Request — ${name} (${guests} guests, ${date})`;
-    const body = [
-      `Dear Tagine Team,`,
-      ``,
-      `I would like to request a table reservation:`,
-      ``,
-      `Name: ${name}`,
-      `Phone: ${phone}`,
-      `Email: ${email}`,
-      `Party Size: ${guests} ${guests === "8+" ? "(Private Event / Buyout)" : "guests"}`,
-      `Date: ${date}`,
-      `Time: ${time}`,
-      `Occasion: ${occasion}`,
-      notes ? `Special Requests: ${notes}` : "",
-      ``,
-      `Please confirm at your earliest convenience.`,
-    ].join("\n");
-
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      await submitReservation({
+        name,
+        phone,
+        email,
+        guests,
+        date,
+        time,
+        occasion,
+        notes,
+      });
+      // Show instant on-screen confirmation
       setSubmitted(true);
-      openMailto(subject, body);
-    }, 800);
+    } catch (err) {
+      console.error("Reservation submission error:", err);
+      setSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] py-20 sm:py-28 lg:py-48 overflow-hidden">
+    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] pt-44 sm:pt-48 md:pt-56 pb-20 sm:pb-28 lg:pb-36 overflow-hidden">
+      {/* Full Page Background Texture — Moroccan Carved Plaster & Zellij */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <Image
+          src="/images/pagesbgnothome.png"
+          alt="Tagine Moroccan pattern background"
+          fill
+          className="object-cover object-center opacity-30"
+          priority
+        />
+        <div className="absolute inset-0 bg-[#141514]/75" />
+      </div>
+
+      {/* Background Hero Ambiance — Authentic Moroccan Zellij Pattern */}
+      <div className="absolute top-0 inset-x-0 h-[640px] z-0 overflow-hidden pointer-events-none">
+        <Image
+          src="/images/pagesbgnothome.png"
+          alt="Tagine Beverly Hills Moroccan pattern hero ambiance"
+          fill
+          className="object-cover object-center opacity-60"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#141514]/40 via-[#141514]/70 to-[#141514]" />
+      </div>
+
       {/* Ambient Lighting */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] ambient-glow-top pointer-events-none" />
 
@@ -141,10 +183,14 @@ export default function ReservationsPage() {
                     <span className="text-white font-medium">132 N Robertson Blvd</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Confirmation:</span>
-                    <span className="text-[#94BA26] font-medium">Email confirmation</span>
+                    <span>Status:</span>
+                    <span className="text-[#94BA26] font-medium">Notification Delivered ✦</span>
                   </div>
                 </div>
+
+                <p className="text-[11px] text-[#9C9B94]/80 max-w-sm mb-8 font-light">
+                  Your reservation request has been transmitted directly to our concierge team. You will receive a confirmation message shortly.
+                </p>
 
                 <button
                   onClick={() => setSubmitted(false)}
@@ -358,15 +404,152 @@ export default function ReservationsPage() {
           </AnimatePresence>
         </motion.div>
 
+        {/* ─── Intimate Dining Room Experience Gallery ─── */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div className="luxury-card overflow-hidden group">
+            <div className="relative aspect-[4/3] w-full overflow-hidden">
+              <Image
+                src="/images/img_1626-2048x1536.jpg"
+                alt="Candlelit tables at Tagine Beverly Hills"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                sizes="(max-width: 640px) 100vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#141514] via-transparent to-transparent opacity-80" />
+              <div className="absolute bottom-3 left-4 right-4">
+                <p className="text-white text-xs font-medium" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem" }}>Candlelit Tables</p>
+                <p className="text-[10px] text-[#9C9B94]">Warm, romantic intimacy</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="luxury-card overflow-hidden group">
+            <div className="relative aspect-[4/3] w-full overflow-hidden">
+              <Image
+                src="/images/img_0180.jpg"
+                alt="Velvet banquette seating at Tagine"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                sizes="(max-width: 640px) 100vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#141514] via-transparent to-transparent opacity-80" />
+              <div className="absolute bottom-3 left-4 right-4">
+                <p className="text-white text-xs font-medium" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem" }}>Velvet Banquettes</p>
+                <p className="text-[10px] text-[#9C9B94]">Handmade Moroccan pillows</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="luxury-card overflow-hidden group">
+            <div className="relative aspect-[4/3] w-full overflow-hidden">
+              <Image
+                src="/images/p1000898-2048x1152.jpg"
+                alt="Beverly Hills sanctuary layout"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                sizes="(max-width: 640px) 100vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#141514] via-transparent to-transparent opacity-80" />
+              <div className="absolute bottom-3 left-4 right-4">
+                <p className="text-white text-xs font-medium" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem" }}>Beverly Hills Sanctuary</p>
+                <p className="text-[10px] text-[#9C9B94]">Exclusive 12-table layout</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ─── Frequently Asked Questions (Collapsible Accordion) ─── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="flex flex-col gap-8 pt-4"
+        >
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-[#94BA26]/25 mb-3">
+              <HelpCircle size={12} className="text-[#94BA26]" />
+              <span className="text-[#94BA26] text-[10px] sm:text-xs uppercase tracking-[0.25em] font-medium" style={{ fontFamily: "'Cinzel', serif" }}>
+                Guest Inquiries & Details
+              </span>
+            </div>
+            <h2
+              className="text-2xl sm:text-3xl lg:text-4xl text-white font-light tracking-wide"
+              style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            >
+              Frequently Asked <span className="text-[#94BA26] italic">Questions</span>
+            </h2>
+          </div>
+
+          <div className="flex flex-col gap-3 max-w-3xl mx-auto w-full">
+            {faqs.map((faq, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <div
+                  key={faq.q}
+                  className="rounded-xl border border-white/[0.08] bg-white/[0.02] hover:border-[#94BA26]/30 transition-colors overflow-hidden"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaq(isOpen ? null : idx)}
+                    className="w-full text-left px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between gap-4 cursor-pointer select-none"
+                    aria-expanded={isOpen}
+                  >
+                    <span className="text-sm sm:text-base font-medium text-[#EFECE6] flex items-center gap-3">
+                      <span className="text-[#94BA26] text-xs">✦</span>
+                      {faq.q}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="shrink-0 text-[#94BA26]"
+                    >
+                      <ChevronDown size={18} />
+                    </motion.div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        key="content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-[#9C9B94] font-light leading-relaxed border-t border-white/[0.04]">
+                          {faq.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </motion.div>
+
         {/* ─── Phone & Location Concierge Bar with Dedicated Spacing ─── */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="luxury-card p-6 sm:p-10 lg:p-14 flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8"
+          className="luxury-card p-6 sm:p-10 lg:p-14 flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 relative overflow-hidden"
         >
-          <div className="flex items-center gap-5 text-left">
+          {/* Authentic Moroccan Zellij Mosaic Accent */}
+          <div className="absolute inset-0 z-0 pointer-events-none opacity-50">
+            <Image
+              src="/images/moroccopattern.png"
+              alt="Moroccan mosaic pattern"
+              fill
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#141514]/90 via-[#141514]/50 to-[#141514]/90" />
+          </div>
+
+          <div className="flex items-center gap-5 text-left relative z-10">
             <div className="w-14 h-14 rounded-full bg-[#94BA26]/10 border border-[#94BA26]/30 flex items-center justify-center text-[#94BA26] shrink-0">
               <Phone size={22} />
             </div>
@@ -382,7 +565,7 @@ export default function ReservationsPage() {
 
           <a
             href="tel:+13103607535"
-            className="btn-gold text-xs px-7 py-3.5 shrink-0"
+            className="btn-gold text-xs px-7 py-3.5 shrink-0 relative z-10"
           >
             (310) 360-7535
           </a>

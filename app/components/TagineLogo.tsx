@@ -4,11 +4,13 @@ import Image from "next/image";
 
 interface TagineLogoProps {
   size?: "sm" | "md" | "lg" | "hero";
+  variant?: "default" | "white";
   className?: string;
 }
 
 export default function TagineLogo({
   size = "md",
+  variant = "default",
   className = "",
 }: TagineLogoProps) {
   // Responsive max-widths that scale down on mobile while keeping aspect ratio
@@ -19,13 +21,18 @@ export default function TagineLogo({
     hero: "max-w-[240px] sm:max-w-[280px] md:max-w-[320px]",
   }[size];
 
+  const src =
+    variant === "white"
+      ? "/images/tajinelogowhite.png"
+      : "/images/tagine_logo_2026.png";
+
   return (
     <div className={`inline-flex items-center select-none ${maxWidth} ${className}`}>
       <Image
-        src="/images/tagine_logo_2026.png"
+        src={src}
         alt="Tagine Beverly Hills"
-        width={320}
-        height={88}
+        width={variant === "white" ? 2160 : 320}
+        height={variant === "white" ? 917 : 88}
         priority
         className="w-full h-auto object-contain"
       />

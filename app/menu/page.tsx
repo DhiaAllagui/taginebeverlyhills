@@ -132,7 +132,32 @@ export default function MenuPage() {
       : menuData.filter((sec) => sec.category === activeCategory);
 
   return (
-    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] py-20 sm:py-28 lg:py-48 overflow-hidden">
+    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] pt-44 sm:pt-48 md:pt-56 pb-20 sm:pb-28 lg:pb-36 overflow-hidden">
+      {/* Full Page Background Texture — Moroccan Carved Plaster & Zellij */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <Image
+          src="/images/pagesbgnothome.png"
+          alt="Tagine Moroccan pattern background"
+          fill
+          className="object-cover object-center opacity-30"
+          priority
+        />
+        <div className="absolute inset-0 bg-[#141514]/75" />
+      </div>
+
+      {/* Background Hero Ambiance — Authentic Moroccan Zellij Pattern */}
+      <div className="absolute top-0 inset-x-0 h-[640px] z-0 overflow-hidden pointer-events-none">
+        <Image
+          src="/images/pagesbgnothome.png"
+          alt="Tagine Beverly Hills Moroccan pattern hero ambiance"
+          fill
+          className="object-cover object-center opacity-60"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#141514]/40 via-[#141514]/70 to-[#141514]" />
+      </div>
+
       {/* Ambient Lighting */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] ambient-glow-top pointer-events-none" />
 

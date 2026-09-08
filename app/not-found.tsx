@@ -1,12 +1,25 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Home, UtensilsCrossed } from "lucide-react";
 
 export default function NotFoundPage() {
   return (
-    <div className="relative min-h-[70vh] flex flex-col items-center justify-center text-center px-6 py-24 bg-[#141514] text-[#EFECE6] overflow-hidden">
+    <div className="relative min-h-[70vh] flex flex-col items-center justify-center text-center px-6 pt-44 sm:pt-48 md:pt-56 pb-24 bg-[#141514] text-[#EFECE6] overflow-hidden">
+      {/* Full Page Background Texture */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <Image
+          src="/images/pagesbgnothome.png"
+          alt="Tagine Moroccan pattern background"
+          fill
+          className="object-cover object-center opacity-30"
+          priority
+        />
+        <div className="absolute inset-0 bg-[#141514]/80" />
+      </div>
+
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] ambient-glow-top pointer-events-none" />
 
       <motion.div
