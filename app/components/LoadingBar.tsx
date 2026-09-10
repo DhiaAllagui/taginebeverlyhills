@@ -10,9 +10,12 @@ export default function LoadingBar() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => setIsLoading(false), 600);
-    return () => clearTimeout(timer);
+    const timer = setTimeout(() => setIsLoading(true), 0);
+    const endTimer = setTimeout(() => setIsLoading(false), 600);
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(endTimer);
+    };
   }, [pathname, searchParams]);
 
   return (
@@ -26,10 +29,10 @@ export default function LoadingBar() {
           className="absolute bottom-0 left-0 right-0 h-[2px] overflow-hidden pointer-events-none z-20"
         >
           {/* Track */}
-          <div className="absolute inset-0 bg-[#94BA26]/20" />
+          <div className="absolute inset-0 bg-[#D4AF37]/20" />
           {/* Shimmer */}
           <motion.div
-            className="absolute top-0 bottom-0 w-1/3 bg-gradient-to-r from-transparent via-[#94BA26] to-transparent shadow-[0_0_8px_#94BA26]"
+            className="absolute top-0 bottom-0 w-1/3 bg-gradient-to-r from-transparent via-[#D4AF37] to-[#E07A5F] shadow-[0_0_10px_#D4AF37]"
             initial={{ left: "-33%" }}
             animate={{ left: "100%" }}
             transition={{

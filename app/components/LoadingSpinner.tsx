@@ -24,9 +24,9 @@ export default function LoadingSpinner({
 }: LoadingSpinnerProps) {
   const spinner = (
     <div className={`relative ${sizeClasses[size]} ${className}`}>
-      {/* Outer rotating ring */}
+      {/* Outer rotating ring — Champagne Gold */}
       <motion.span
-        className="absolute inset-0 rounded-full border-t-[#94BA26] border-r-transparent border-b-[#94BA26]/40 border-l-transparent"
+        className="absolute inset-0 rounded-full border-t-[#D4AF37] border-r-transparent border-b-[#D4AF37]/40 border-l-transparent"
         animate={{ rotate: 360 }}
         transition={{
           duration: 1.2,
@@ -34,9 +34,9 @@ export default function LoadingSpinner({
           ease: "linear",
         }}
       />
-      {/* Inner counter-rotating ring */}
+      {/* Inner counter-rotating ring — Burnt Amber */}
       <motion.span
-        className="absolute inset-1 rounded-full border-t-transparent border-r-[#94BA26]/70 border-b-transparent border-l-[#94BA26]/70"
+        className="absolute inset-1 rounded-full border-t-transparent border-r-[#E07A5F]/80 border-b-transparent border-l-[#E07A5F]/80"
         animate={{ rotate: -360 }}
         transition={{
           duration: 1.8,
@@ -46,7 +46,7 @@ export default function LoadingSpinner({
       />
       {/* Center pulse */}
       <motion.span
-        className="absolute inset-0 m-auto rounded-full bg-[#94BA26]/20"
+        className="absolute inset-0 m-auto rounded-full bg-[#D4AF37]/25"
         animate={{ scale: [0.6, 1, 0.6], opacity: [0.4, 0.8, 0.4] }}
         transition={{
           duration: 1.5,
@@ -60,7 +60,7 @@ export default function LoadingSpinner({
 
   if (fullScreen) {
     return (
-      <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#121312]/90 backdrop-blur-md">
+      <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0A0A0A]/92 backdrop-blur-md">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -70,7 +70,7 @@ export default function LoadingSpinner({
         >
           {spinner}
           {label && (
-            <p className="text-[#EFECE6] text-xs uppercase tracking-[0.25em] font-light">
+            <p className="text-[#EDE8DF] text-xs uppercase tracking-[0.25em] font-light">
               {label}
             </p>
           )}
@@ -83,7 +83,7 @@ export default function LoadingSpinner({
     <div className="flex flex-col items-center gap-3">
       {spinner}
       {label && (
-        <p className="text-[#EFECE6]/70 text-[11px] uppercase tracking-wider font-light">
+        <p className="text-[#EDE8DF]/70 text-[11px] uppercase tracking-wider font-light">
           {label}
         </p>
       )}

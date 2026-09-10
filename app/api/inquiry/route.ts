@@ -38,41 +38,41 @@ Timestamp:     ${new Date().toLocaleString()}
 <head>
   <meta charset="utf-8">
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #141514; color: #EFECE6; margin: 0; padding: 24px; }
-    .container { max-width: 600px; margin: 0 auto; background: #1c1d1b; border: 1px solid rgba(148, 186, 38, 0.35); border-radius: 12px; overflow: hidden; }
-    .header { background: #141514; border-bottom: 1px solid rgba(148, 186, 38, 0.2); padding: 28px 24px; text-align: center; }
-    .header h1 { font-family: Georgia, serif; color: #94BA26; font-size: 24px; letter-spacing: 2px; margin: 0 0 6px 0; font-weight: normal; }
-    .header p { color: #9C9B94; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #0A0A0A; color: #EDE8DF; margin: 0; padding: 24px; }
+    .container { max-width: 600px; margin: 0 auto; background: #141312; border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 12px; overflow: hidden; }
+    .header { background: #0A0A0A; border-bottom: 1px solid rgba(212, 175, 55, 0.25); padding: 28px 24px; text-align: center; }
+    .header h1 { font-family: Georgia, serif; color: #D4AF37; font-size: 24px; letter-spacing: 2px; margin: 0 0 6px 0; font-weight: normal; }
+    .header p { color: #A3A3A3; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin: 0; }
     .content { padding: 28px 24px; }
-    .badge { display: inline-block; background: rgba(148, 186, 38, 0.15); color: #94BA26; border: 1px solid rgba(148, 186, 38, 0.4); padding: 4px 12px; border-radius: 999px; font-size: 11px; letter-spacing: 1px; font-weight: 600; margin-bottom: 16px; }
+    .badge { display: inline-block; background: rgba(212, 175, 55, 0.15); color: #D4AF37; border: 1px solid rgba(212, 175, 55, 0.4); padding: 4px 12px; border-radius: 999px; font-size: 11px; letter-spacing: 1px; font-weight: 600; margin-bottom: 16px; }
     .grid { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
     .grid td { padding: 12px 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-size: 14px; }
-    .grid td.label { color: #9C9B94; width: 35%; font-weight: 500; }
+    .grid td.label { color: #A3A3A3; width: 35%; font-weight: 500; }
     .grid td.val { color: #FFFFFF; font-weight: 600; }
-    .notes-box { background: rgba(255, 255, 255, 0.03); border-left: 3px solid #94BA26; padding: 14px 16px; border-radius: 4px; margin-top: 12px; font-size: 13px; color: #EFECE6; line-height: 1.6; }
-    .footer { background: #141514; border-top: 1px solid rgba(255, 255, 255, 0.05); padding: 20px 24px; text-align: center; font-size: 11px; color: #6e6d67; }
-    .footer a { color: #94BA26; text-decoration: none; }
+    .notes-box { background: rgba(255, 255, 255, 0.03); border-left: 3px solid #D4AF37; padding: 14px 16px; border-radius: 4px; margin-top: 12px; font-size: 13px; color: #EDE8DF; line-height: 1.6; }
+    .footer { background: #0A0A0A; border-top: 1px solid rgba(255, 255, 255, 0.05); padding: 20px 24px; text-align: center; font-size: 11px; color: #737373; }
+    .footer a { color: #D4AF37; text-decoration: none; }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
       <h1>TAGINE BEVERLY HILLS</h1>
-      <p>Fine Moroccan Dining</p>
+      <p>Fine Dining Lounge</p>
     </div>
     <div class="content">
       <div class="badge">✦ ${formType || "NEW INQUIRY"}</div>
       <table class="grid">
         <tr><td class="label">From</td><td class="val">${name}</td></tr>
-        <tr><td class="label">Email</td><td class="val"><a href="mailto:${email}" style="color: #94BA26; text-decoration: none;">${email}</a></td></tr>
-        ${phone ? `<tr><td class="label">Phone</td><td class="val"><a href="tel:${phone}" style="color: #94BA26; text-decoration: none;">${phone}</a></td></tr>` : ""}
+        <tr><td class="label">Email</td><td class="val"><a href="mailto:${email}" style="color: #D4AF37; text-decoration: none;">${email}</a></td></tr>
+        ${phone ? `<tr><td class="label">Phone</td><td class="val"><a href="tel:${phone}" style="color: #D4AF37; text-decoration: none;">${phone}</a></td></tr>` : ""}
         ${eventType ? `<tr><td class="label">Event Type</td><td class="val">${eventType}</td></tr>` : ""}
         ${guests ? `<tr><td class="label">Guests</td><td class="val">${guests}</td></tr>` : ""}
         ${eventDate ? `<tr><td class="label">Date</td><td class="val">${eventDate}</td></tr>` : ""}
         ${subject ? `<tr><td class="label">Subject</td><td class="val">${subject}</td></tr>` : ""}
       </table>
 
-      <div class="label" style="font-size: 12px; color: #9C9B94; margin-bottom: 6px;">Message / Inquiries:</div>
+      <div class="label" style="font-size: 12px; color: #A3A3A3; margin-bottom: 6px;">Message / Inquiries:</div>
       <div class="notes-box">${(message || notes || "").replace(/\n/g, "<br>")}</div>
     </div>
     <div class="footer">

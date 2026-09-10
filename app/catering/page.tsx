@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Phone, CheckCircle, Sparkles, Users, Wine, Utensils } from "lucide-react";
 import { submitInquiry } from "../lib/form-actions";
 import LoadingSpinner from "../components/LoadingSpinner";
+import SubpageBackground from "../components/SubpageBackground";
 
 export default function CateringPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -51,37 +52,15 @@ export default function CateringPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#141514] text-[#EFECE6] pt-44 sm:pt-48 md:pt-56 pb-20 sm:pb-28 lg:pb-36 overflow-hidden">
-      {/* Full Page Background Texture — Moroccan Carved Plaster & Zellij */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <Image
-          src="/images/pagesbgnothome.png"
-          alt="Tagine Moroccan pattern background"
-          fill
-          className="object-cover object-center opacity-30"
-          priority
-        />
-        <div className="absolute inset-0 bg-[#141514]/75" />
-      </div>
+    <div className="relative min-h-screen bg-[#0A0A0A] text-[#F9F9F9] pt-28 sm:pt-32 md:pt-36 pb-24 sm:pb-32 overflow-hidden">
+      {/* Page Background: bg.png */}
+      <SubpageBackground />
 
-      {/* Background Hero Banner — Authentic Moroccan Pattern */}
-      <div className="absolute top-0 inset-x-0 h-[640px] z-0 overflow-hidden pointer-events-none">
-        <Image
-          src="/images/pagesbgnothome.png"
-          alt="Tagine Beverly Hills Moroccan pattern hero ambiance"
-          fill
-          className="object-cover object-center opacity-60"
-          priority
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#141514]/40 via-[#141514]/70 to-[#141514]" />
-      </div>
-
-      {/* Ambient Candlelight Background Lighting */}
+      {/* Ambient Lighting */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] ambient-glow-top pointer-events-none" />
-      <div className="absolute bottom-1/3 right-0 w-96 h-96 bg-[#94BA26]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 w-[450px] h-[350px] ambient-glow-amber pointer-events-none opacity-25" />
 
-      <div className="site-container max-w-5xl relative z-10 flex flex-col gap-20 sm:gap-28 lg:gap-32">
+      <div className="site-container max-w-5xl relative z-10 flex flex-col gap-16 sm:gap-24">
         {/* ─── Hero Header ─── */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -89,38 +68,41 @@ export default function CateringPage() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center px-2 sm:px-0"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-[#94BA26]/30 mb-6">
-            <Sparkles size={13} className="text-[#94BA26]" />
-            <span className="text-[#94BA26] text-[10px] sm:text-xs uppercase tracking-[0.3em] font-semibold" style={{ fontFamily: "'Cinzel', serif" }}>
-              Private Dining & Bespoke Events
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#181615] border border-[#D4AF37]/30 mb-6 shadow-sm">
+            <Sparkles size={13} className="text-[#D4AF37]" />
+            <span
+              className="text-[#D4AF37] text-[10px] sm:text-xs uppercase tracking-[0.3em] font-semibold"
+              style={{ fontFamily: "'Cinzel', serif" }}
+            >
+              Private Dining &amp; Bespoke Events
             </span>
           </div>
 
           <h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-6"
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-normal tracking-wide mb-6"
+            style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Catering & <span className="text-[#94BA26] italic">Buyouts</span>
+            Catering &amp; <span className="text-[#D4AF37] italic">Buyouts</span>
           </h1>
 
           <div className="gold-divider">
-            <span className="text-[#94BA26] text-xs">✦</span>
+            <span className="text-[#D4AF37] text-xs">✦</span>
           </div>
 
-          <p className="text-[#9C9B94] text-sm md:text-base font-light max-w-2xl mx-auto leading-relaxed mt-4">
+          <p className="text-[#A3A3A3] text-sm md:text-base font-light max-w-2xl mx-auto leading-relaxed mt-4">
             From complete exclusivity of our intimate Beverly Hills sanctuary to grand culinary productions at private California estates, Chef Ben curates an unforgettable feast.
           </p>
         </motion.div>
 
-        {/* ─── Experiences Showcase (Editorial Cards) ─── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-14">
+        {/* ─── Experiences Showcase ─── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
           {/* Option 1: Buyout */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="luxury-card overflow-hidden group flex flex-col justify-between"
+            className="luxury-card overflow-hidden group flex flex-col justify-between border border-[#D4AF37]/25"
           >
             <div>
               <div className="relative aspect-[16/10] overflow-hidden">
@@ -131,45 +113,52 @@ export default function CateringPage() {
                   className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#181918] via-transparent to-black/20" />
-                <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md border border-[#94BA26]/40 px-3.5 py-1 rounded-full text-[10px] text-[#94BA26] uppercase tracking-[0.2em] font-medium" style={{ fontFamily: "'Cinzel', serif" }}>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-black/30" />
+                <div
+                  className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-[#D4AF37]/40 px-3.5 py-1 rounded-full text-[10px] text-[#D4AF37] uppercase tracking-[0.2em] font-semibold"
+                  style={{ fontFamily: "'Cinzel', serif" }}
+                >
                   Up to 35 Guests
                 </div>
               </div>
 
-              <div className="p-5 sm:p-7 lg:p-8 flex flex-col gap-4">
-                <h3 className="text-xl sm:text-2xl lg:text-3xl text-white font-light" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              <div className="p-6 sm:p-8 flex flex-col gap-4">
+                <h3
+                  className="text-xl sm:text-2xl lg:text-3xl text-white font-normal"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
                   Full Restaurant Buyout
                 </h3>
-                <p className="text-xs sm:text-sm text-[#9C9B94] font-light leading-relaxed">
-                  Complete privacy in our candlelit hideaway on Robertson Blvd. Intimate tables, dim lighting, soft Moroccan melodies, and attentive private service.
+                <p className="text-xs sm:text-sm text-[#A3A3A3] font-light leading-relaxed">
+                  Complete exclusivity in our candlelit hideaway on Robertson Blvd. Intimate tables, dim lighting, soft lounge melodies, and attentive private service.
                 </p>
 
-                <div className="pt-2 border-t border-white/5 flex flex-col gap-2 text-xs text-[#EFECE6]/80 font-light">
+                <div className="pt-2 border-t border-white/[0.08] flex flex-col gap-2.5 text-xs text-[#EDE8DF] font-light">
                   <div className="flex items-center gap-2">
-                    <Utensils size={13} className="text-[#94BA26]" />
-                    <span>Custom multi-course Moroccan tasting by Chef Ben</span>
+                    <Utensils size={13} className="text-[#D4AF37]" />
+                    <span>Custom multi-course tasting menu by Chef Ben</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Wine size={13} className="text-[#94BA26]" />
-                    <span>Curated fine wine pairings & champagne welcome</span>
+                    <Wine size={13} className="text-[#D4AF37]" />
+                    <span>Curated reserve wine pairings &amp; champagne welcome</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Users size={13} className="text-[#94BA26]" />
-                    <span>Dedicated sommelier and private service staff</span>
+                    <Users size={13} className="text-[#D4AF37]" />
+                    <span>Dedicated sommelier and private service brigade</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="p-5 sm:p-7 lg:p-8 pt-0">
+            <div className="p-6 sm:p-8 pt-0">
               <button
+                type="button"
                 onClick={() => {
                   setEventType("Restaurant Buyout");
                   const formEl = document.getElementById("inquiry-form");
                   if (formEl) formEl.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="btn-outline w-full text-xs py-3 justify-center"
+                className="btn-gold w-full text-xs py-3.5 justify-center tracking-widest cursor-pointer"
               >
                 Inquire For Buyout
               </button>
@@ -182,7 +171,7 @@ export default function CateringPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="luxury-card overflow-hidden group flex flex-col justify-between"
+            className="luxury-card overflow-hidden group flex flex-col justify-between border border-[#D4AF37]/25"
           >
             <div>
               <div className="relative aspect-[16/10] overflow-hidden">
@@ -193,45 +182,52 @@ export default function CateringPage() {
                   className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#181918] via-transparent to-black/20" />
-                <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md border border-[#94BA26]/40 px-3.5 py-1 rounded-full text-[10px] text-[#94BA26] uppercase tracking-[0.2em] font-medium" style={{ fontFamily: "'Cinzel', serif" }}>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-black/30" />
+                <div
+                  className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-[#E07A5F]/40 px-3.5 py-1 rounded-full text-[10px] text-[#E07A5F] uppercase tracking-[0.2em] font-semibold"
+                  style={{ fontFamily: "'Cinzel', serif" }}
+                >
                   20 to 250+ Guests
                 </div>
               </div>
 
-              <div className="p-5 sm:p-7 lg:p-8 flex flex-col gap-4">
-                <h3 className="text-xl sm:text-2xl lg:text-3xl text-white font-light" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              <div className="p-6 sm:p-8 flex flex-col gap-4">
+                <h3
+                  className="text-xl sm:text-2xl lg:text-3xl text-white font-normal"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
                   Off-Site Estate Catering
                 </h3>
-                <p className="text-xs sm:text-sm text-[#9C9B94] font-light leading-relaxed">
-                  We bring the full culinary alchemy of Tagine to private residences, wedding celebrations, and film industry wrap events across Southern California.
+                <p className="text-xs sm:text-sm text-[#A3A3A3] font-light leading-relaxed">
+                  We bring the full culinary alchemy of Tagine to private Beverly Hills residences, wedding celebrations, and film industry wrap events across Southern California.
                 </p>
 
-                <div className="pt-2 border-t border-white/5 flex flex-col gap-2 text-xs text-[#EFECE6]/80 font-light">
+                <div className="pt-2 border-t border-white/[0.08] flex flex-col gap-2.5 text-xs text-[#EDE8DF] font-light">
                   <div className="flex items-center gap-2">
-                    <Utensils size={13} className="text-[#94BA26]" />
-                    <span>Live tagine cooking stations & slow-braised lamb shanks</span>
+                    <Utensils size={13} className="text-[#D4AF37]" />
+                    <span>Live braising stations &amp; slow-cooked signature lamb shanks</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Sparkles size={13} className="text-[#94BA26]" />
-                    <span>Artisanal Moroccan tableware, lanterns & decor styling</span>
+                    <Sparkles size={13} className="text-[#D4AF37]" />
+                    <span>Artisanal tableware, ambient lighting &amp; luxury decor styling</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Users size={13} className="text-[#94BA26]" />
+                    <Users size={13} className="text-[#D4AF37]" />
                     <span>Full brigade of chefs, captains, and mixologists</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="p-5 sm:p-7 lg:p-8 pt-0">
+            <div className="p-6 sm:p-8 pt-0">
               <button
+                type="button"
                 onClick={() => {
                   setEventType("Off-Site Estate");
                   const formEl = document.getElementById("inquiry-form");
                   if (formEl) formEl.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="btn-outline w-full text-xs py-3 justify-center"
+                className="btn-outline w-full text-xs py-3.5 justify-center tracking-widest cursor-pointer"
               >
                 Inquire For Catering
               </button>
@@ -246,16 +242,22 @@ export default function CateringPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="luxury-card p-6 sm:p-10 lg:p-16 xl:p-20 relative shadow-2xl"
+          className="luxury-card p-6 sm:p-10 lg:p-14 relative shadow-2xl border border-[#D4AF37]/25"
         >
-          <div className="text-center mb-10 sm:mb-14">
-            <span className="text-[#94BA26] text-xs uppercase tracking-[0.28em] font-medium block mb-2.5" style={{ fontFamily: "'Cinzel', serif" }}>
+          <div className="text-center mb-10">
+            <span
+              className="text-[#D4AF37] text-xs uppercase tracking-[0.28em] font-semibold block mb-2"
+              style={{ fontFamily: "'Cinzel', serif" }}
+            >
               Private Dining Concierge
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl text-white font-light" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+            <h2
+              className="text-2xl sm:text-3xl lg:text-4xl text-white font-normal"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
               Request an Event Proposal
             </h2>
-            <p className="text-xs sm:text-sm text-[#9C9B94] font-light max-w-md mx-auto mt-3">
+            <p className="text-xs sm:text-sm text-[#A3A3A3] font-light max-w-md mx-auto mt-2.5">
               Share your vision. Our Private Dining Director will respond with customized culinary proposals and availability.
             </p>
           </div>
@@ -269,33 +271,39 @@ export default function CateringPage() {
                 exit={{ opacity: 0 }}
                 className="py-8 sm:py-12 text-center flex flex-col items-center"
               >
-                <div className="w-16 h-16 rounded-full bg-[#94BA26]/10 border border-[#94BA26] flex items-center justify-center text-[#94BA26] mb-5">
+                <div className="w-16 h-16 rounded-full bg-[#E07A5F]/15 border border-[#E07A5F] flex items-center justify-center text-[#E07A5F] mb-5 shadow-[0_0_30px_rgba(224,122,95,0.35)]">
                   <CheckCircle size={32} />
                 </div>
-                <h3 className="text-xl sm:text-2xl lg:text-3xl text-white font-light mb-3" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                <h3
+                  className="text-xl sm:text-2xl lg:text-3xl text-white font-normal mb-2"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
                   Proposal Request Received
                 </h3>
-                <p className="text-sm text-[#9C9B94] max-w-md mb-2 leading-relaxed">
+                <p className="text-sm text-[#A3A3A3] max-w-md mb-2 leading-relaxed">
                   Thank you, <span className="text-white font-medium">{name}</span>. We have logged your request for <span className="text-white font-medium">{eventType}</span> ({guests} guests).
                 </p>
-                <p className="text-xs text-[#9C9B94]/80 mb-8">
-                  Our private events concierge will contact you shortly at <span className="text-[#94BA26]">{phone || email}</span>.
+                <p className="text-xs text-[#A3A3A3]/80 mb-8">
+                  Our private events director will contact you shortly at <span className="text-[#D4AF37]">{phone || email}</span>.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="btn-outline text-xs px-8 py-3"
+                  className="btn-outline text-xs px-8 py-3 cursor-pointer"
                 >
                   Submit Another Inquiry
                 </button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-6 sm:gap-8 lg:gap-10">
-                {/* Interactive Event Type Selector */}
+              <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+                {/* Event Type Selector */}
                 <div>
-                  <label className="block text-xs uppercase tracking-widest text-[#94BA26] font-medium mb-3.5" style={{ fontFamily: "'Cinzel', serif" }}>
+                  <label
+                    className="block text-xs uppercase tracking-widest text-[#D4AF37] font-semibold mb-3.5"
+                    style={{ fontFamily: "'Cinzel', serif" }}
+                  >
                     Select Event Type
                   </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                     {eventTypes.map((item) => {
                       const isSelected = eventType === item.id;
                       return (
@@ -303,26 +311,31 @@ export default function CateringPage() {
                           key={item.id}
                           type="button"
                           onClick={() => setEventType(item.id)}
-                          className={`p-3.5 sm:p-5 rounded-xl text-left transition-all duration-300 border shadow-sm ${
+                          className={`p-4 rounded-xl text-left transition-all duration-200 border cursor-pointer ${
                             isSelected
-                              ? "bg-[#94BA26]/20 border-[#94BA26] text-white shadow-[0_0_18px_rgba(148,186,38,0.25)]"
-                              : "bg-zinc-900/80 border-zinc-700/50 text-[#D4D2C9] hover:bg-[#94BA26]/20 hover:border-[#94BA26] hover:text-white hover:-translate-y-0.5"
+                              ? "bg-gradient-to-r from-[#E07A5F] to-[#D96B43] border-[#F4A261] text-white shadow-[0_0_18px_rgba(224,122,95,0.4)]"
+                              : "bg-[#161413] border-[#D4AF37]/20 text-[#A3A3A3] hover:border-[#D4AF37] hover:text-white"
                           }`}
                         >
-                          <div className="text-xs font-medium">{item.label}</div>
-                          <div className="text-[11px] text-[#94BA26] font-medium mt-1">{item.capacity}</div>
+                          <div className="text-xs font-semibold">{item.label}</div>
+                          <div className={`text-[11px] mt-1 ${isSelected ? "text-white/80" : "text-[#D4AF37]"}`}>
+                            {item.capacity}
+                          </div>
                         </button>
                       );
                     })}
                   </div>
                 </div>
 
-                {/* Interactive Guest Count Pills */}
+                {/* Guest Count Pills */}
                 <div>
-                  <label className="block text-xs uppercase tracking-widest text-[#94BA26] font-medium mb-3.5" style={{ fontFamily: "'Cinzel', serif" }}>
+                  <label
+                    className="block text-xs uppercase tracking-widest text-[#D4AF37] font-semibold mb-3.5"
+                    style={{ fontFamily: "'Cinzel', serif" }}
+                  >
                     Estimated Guest Count
                   </label>
-                  <div className="flex flex-wrap gap-2.5 sm:gap-3.5 lg:gap-4">
+                  <div className="flex flex-wrap gap-2.5">
                     {guestRanges.map((range) => {
                       const isSelected = guests === range;
                       return (
@@ -330,10 +343,10 @@ export default function CateringPage() {
                           key={range}
                           type="button"
                           onClick={() => setGuests(range)}
-                          className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-full text-[11px] sm:text-xs font-medium transition-all duration-300 border shadow-sm ${
+                          className={`px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider transition-all duration-200 border cursor-pointer ${
                             isSelected
-                              ? "bg-[#94BA26] text-[#0E100E] border-[#94BA26] font-semibold shadow-[0_0_15px_rgba(148,186,38,0.35)]"
-                              : "bg-zinc-900/80 border-zinc-700/50 text-[#D4D2C9] hover:bg-[#94BA26]/20 hover:border-[#94BA26] hover:text-white hover:-translate-y-0.5"
+                              ? "bg-[#D4AF37] text-[#0A0A0A] border-[#F3E5AB] shadow-[0_0_15px_rgba(212,175,55,0.4)] font-bold"
+                              : "bg-[#161413] border-[#D4AF37]/20 text-[#A3A3A3] hover:border-[#D4AF37] hover:text-white"
                           }`}
                         >
                           {range} Guests
@@ -344,9 +357,9 @@ export default function CateringPage() {
                 </div>
 
                 {/* Contact & Date Fields */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-[11px] uppercase tracking-wider text-white/70 font-light mb-2">
+                    <label className="block text-[11px] uppercase tracking-wider text-[#A3A3A3] font-light mb-2">
                       Full Name *
                     </label>
                     <input
@@ -360,7 +373,7 @@ export default function CateringPage() {
                   </div>
 
                   <div>
-                    <label className="block text-[11px] uppercase tracking-wider text-white/70 font-light mb-2">
+                    <label className="block text-[11px] uppercase tracking-wider text-[#A3A3A3] font-light mb-2">
                       Phone Number *
                     </label>
                     <input
@@ -374,9 +387,9 @@ export default function CateringPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-[11px] uppercase tracking-wider text-white/70 font-light mb-2">
+                    <label className="block text-[11px] uppercase tracking-wider text-[#A3A3A3] font-light mb-2">
                       Email Address *
                     </label>
                     <input
@@ -390,22 +403,28 @@ export default function CateringPage() {
                   </div>
 
                   <div>
-                    <label className="block text-[11px] uppercase tracking-wider text-white/70 font-light mb-2">
+                    <label className="block text-[11px] uppercase tracking-wider text-[#A3A3A3] font-light mb-2">
                       Desired Event Date *
                     </label>
                     <input
                       type="date"
                       required
                       value={eventDate}
+                      min={new Date().toISOString().split("T")[0]}
+                      onClick={(e) => {
+                        try {
+                          e.currentTarget.showPicker?.();
+                        } catch {}
+                      }}
                       onChange={(e) => setEventDate(e.target.value)}
-                      className="luxury-input"
+                      className="luxury-input cursor-pointer"
                     />
                   </div>
                 </div>
 
                 {/* Special Requests */}
                 <div>
-                  <label className="block text-[11px] uppercase tracking-wider text-white/70 font-light mb-2">
+                  <label className="block text-[11px] uppercase tracking-wider text-[#A3A3A3] font-light mb-2">
                     Vision, Dietary Notes, or Inquiries (Optional)
                   </label>
                   <textarea
@@ -418,16 +437,16 @@ export default function CateringPage() {
                 </div>
 
                 {/* Submit Button */}
-                <div className="pt-6 text-center">
+                <div className="pt-2 text-center">
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="btn-gold w-full sm:w-auto sm:min-w-[280px] lg:min-w-[320px] py-4 text-xs font-semibold tracking-widest disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="btn-gold w-full sm:w-auto sm:min-w-[300px] py-4 text-xs font-semibold tracking-widest disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
                   >
                     {submitting ? (
                       <span className="flex items-center justify-center gap-2">
                         <LoadingSpinner size="sm" />
-                        Sending...
+                        Transmitting...
                       </span>
                     ) : (
                       "Request Proposal"
@@ -445,16 +464,16 @@ export default function CateringPage() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center border-t border-white/5 pt-10"
+          className="text-center border-t border-white/[0.08] pt-8"
         >
-          <p className="text-xs text-[#9C9B94] font-light mb-3">
-            Prefer to speak directly with our private dining manager?
+          <p className="text-xs text-[#A3A3A3] font-light mb-3">
+            Prefer to speak directly with our private dining director?
           </p>
           <a
             href="tel:+13103607535"
-            className="inline-flex items-center gap-2.5 text-white hover:text-[#94BA26] font-medium text-base transition-colors px-6 py-2.5 rounded-full bg-white/[0.02] border border-white/10 hover:border-[#94BA26]/50"
+            className="inline-flex items-center gap-2.5 text-white hover:text-[#D4AF37] font-medium text-base transition-colors px-6 py-2.5 rounded-full bg-[#161413] border border-[#D4AF37]/30 hover:border-[#D4AF37]"
           >
-            <Phone size={15} className="text-[#94BA26]" />
+            <Phone size={15} className="text-[#D4AF37]" />
             <span>(310) 360-7535</span>
           </a>
         </motion.div>

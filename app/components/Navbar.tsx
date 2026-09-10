@@ -1,10 +1,10 @@
 "use client";
 
-import { Suspense, useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Phone } from "lucide-react";
+import { Calendar } from "lucide-react";
 import TagineLogo from "./TagineLogo";
 import LoadingBar from "./LoadingBar";
 
@@ -25,8 +25,11 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    setVisible(true);
-    setMobileOpen(false);
+    const t = setTimeout(() => {
+      setVisible(true);
+      setMobileOpen(false);
+    }, 0);
+    return () => clearTimeout(t);
   }, [pathname]);
 
   useEffect(() => {
@@ -60,47 +63,34 @@ export default function Navbar() {
         visible || mobileOpen ? "translate-y-0" : "-translate-y-full"
       } ${
         scrolled
-          ? "bg-[#141514]/80 shadow-[0_12px_40px_rgba(0,0,0,0.55)] border-b border-white/[0.12]"
-          : "bg-[#141514]/25 shadow-[0_4px_30px_rgba(0,0,0,0.15)] border-b border-white/[0.08]"
+          ? "bg-[#0A0A0A]/90 shadow-[0_16px_40px_rgba(0,0,0,0.85)] border-b border-[#D4AF37]/20"
+          : "bg-[#0A0A0A]/40 shadow-[0_4px_30px_rgba(0,0,0,0.3)] border-b border-white/[0.06]"
       }`}
       style={{
-        backdropFilter: "blur(20px) saturate(180%)",
-        WebkitBackdropFilter: "blur(20px) saturate(180%)",
+        backdropFilter: "blur(24px) saturate(180%)",
+        WebkitBackdropFilter: "blur(24px) saturate(180%)",
       }}
     >
-      {/* Liquid glass border and sheen */}
+      {/* Liquid glass border and subtle champagne gold sheen */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-white/[0.08] via-white/[0.02] to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#94BA26]/30 to-transparent" />
-        <div className="absolute inset-x-0 top-0 h-px bg-white/10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/[0.05] via-transparent to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/35 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-white/[0.08]" />
       </div>
 
-      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 relative z-10 flex flex-col items-center py-4 sm:py-5">
-        {/* Top row: centered logo with mobile controls on sides */}
-        <div className="w-full flex items-center justify-between md:justify-center relative">
-          {/* Spacer for mobile hamburger alignment */}
-          <div className="md:hidden w-11" />
-
-          {/* Centered Logo */}
-          <Link
-            href="/"
-            className="flex items-center focus:outline-none"
-            aria-label="Tagine Beverly Hills Home"
-            onClick={() => setMobileOpen(false)}
-          >
-            <TagineLogo size="md" variant="white" />
-          </Link>
-
-          {/* Animated Mobile Hamburger Button */}
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 relative z-10 flex items-center justify-between h-20">
+        {/* Left Side: Desktop Nav Links & Mobile Hamburger */}
+        <div className="flex items-center gap-6 lg:gap-8">
+          {/* Mobile Hamburger Button */}
           <button
             onClick={() => setMobileOpen((prev) => !prev)}
-            className="md:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-full bg-white/[0.06] border border-white/10 hover:border-[#94BA26]/50 hover:bg-white/[0.12] focus:outline-none transition-all cursor-pointer"
+            className="md:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-full bg-[#181615]/80 border border-[#D4AF37]/25 hover:border-[#D4AF37] hover:bg-[#221E1D] focus:outline-none transition-all cursor-pointer"
             aria-label="Toggle Navigation Menu"
             aria-expanded={mobileOpen}
           >
             <span
               className={`w-5 h-0.5 bg-zinc-200 rounded-full transition-all duration-300 ease-out origin-center ${
-                mobileOpen ? "rotate-45 translate-y-2 bg-[#94BA26]" : ""
+                mobileOpen ? "rotate-45 translate-y-2 bg-[#D4AF37]" : ""
               }`}
             />
             <span
@@ -110,61 +100,79 @@ export default function Navbar() {
             />
             <span
               className={`w-5 h-0.5 bg-zinc-200 rounded-full transition-all duration-300 ease-out origin-center ${
-                mobileOpen ? "-rotate-45 -translate-y-2 bg-[#94BA26]" : ""
+                mobileOpen ? "-rotate-45 -translate-y-2 bg-[#D4AF37]" : ""
               }`}
             />
           </button>
+
+          {/* Desktop Left Navigation Links */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8" aria-label="Main Navigation">
+            <Link
+              href="/menu"
+              className={`text-[11px] lg:text-xs tracking-[0.24em] uppercase transition-colors font-medium ${
+                pathname === "/menu" ? "text-[#D4AF37] font-semibold" : "text-zinc-300 hover:text-[#F3E5AB]"
+              }`}
+            >
+              Menu
+            </Link>
+            <Link
+              href="/chef-ben"
+              className={`text-[11px] lg:text-xs tracking-[0.24em] uppercase transition-colors font-medium ${
+                pathname === "/chef-ben" ? "text-[#D4AF37] font-semibold" : "text-zinc-300 hover:text-[#F3E5AB]"
+              }`}
+            >
+              Our Story
+            </Link>
+            <Link
+              href="/catering"
+              className={`text-[11px] lg:text-xs tracking-[0.24em] uppercase transition-colors font-medium ${
+                pathname === "/catering" ? "text-[#D4AF37] font-semibold" : "text-zinc-300 hover:text-[#F3E5AB]"
+              }`}
+            >
+              Private Events
+            </Link>
+          </nav>
         </div>
 
-        {/* Desktop Navigation row: Pages links centered, Reserve a Table in the far right corner */}
-        <div className="w-full hidden md:flex items-center justify-center mt-4 relative">
-          {/* Pages links centered */}
-          <nav
-            className="flex items-center gap-6 lg:gap-8 xl:gap-10"
-            aria-label="Main Navigation"
+        {/* Center: Iconic Logo */}
+        <Link
+          href="/"
+          className="flex items-center focus:outline-none group absolute left-1/2 -translate-x-1/2"
+          aria-label="Tagine Beverly Hills Home"
+          onClick={() => setMobileOpen(false)}
+        >
+          <TagineLogo size="sm" variant="white" />
+        </Link>
+
+        {/* Right Side: Gift Cards, Contact & Reservations CTA (Desktop Only) */}
+        <div className="hidden md:flex items-center gap-4 lg:gap-6">
+          <Link
+            href="/gift-cards"
+            className={`hidden lg:inline-block text-[11px] tracking-[0.24em] uppercase transition-colors font-medium ${
+              pathname === "/gift-cards" ? "text-[#D4AF37] font-semibold" : "text-zinc-300 hover:text-[#F3E5AB]"
+            }`}
           >
-            {navLinks.map((link) => {
-              const isActive =
-                link.href === "/"
-                  ? pathname === "/"
-                  : pathname?.startsWith(link.href);
-
-              return (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className={`group relative flex flex-col items-center gap-1.5 py-1 text-[11px] lg:text-xs tracking-[0.18em] lg:tracking-[0.22em] uppercase transition-colors duration-200 focus:outline-none whitespace-nowrap ${
-                    isActive
-                      ? "text-white font-semibold"
-                      : "text-zinc-400 hover:text-white font-medium"
-                  }`}
-                  style={{ fontFamily: "'Inter', sans-serif" }}
-                >
-                  <span>{link.label}</span>
-                  {isActive ? (
-                    <span className="h-0.5 w-5 rounded-full bg-[#94BA26] shadow-[0_0_8px_rgba(148,186,38,0.8)] transition-all duration-300" />
-                  ) : (
-                    <span className="h-0.5 w-1.5 rounded-full bg-transparent group-hover:bg-white/30 transition-all duration-300" />
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Far Right Corner: Reserve a Table CTA */}
-          <div className="absolute right-0 top-1/2 -translate-y-1/2">
-            <Link
-              href="/reservations"
-              className="btn-gold py-2 px-4 lg:px-5 text-[10px] lg:text-[11px] tracking-[0.18em] lg:tracking-[0.2em] whitespace-nowrap shadow-lg"
-            >
-              <Calendar size={13} />
-              <span>Reserve a Table</span>
-            </Link>
-          </div>
+            Gift Cards
+          </Link>
+          <Link
+            href="/contact"
+            className={`hidden md:inline-block text-[11px] tracking-[0.24em] uppercase transition-colors font-medium ${
+              pathname === "/contact" ? "text-[#D4AF37] font-semibold" : "text-zinc-300 hover:text-[#F3E5AB]"
+            }`}
+          >
+            Contact
+          </Link>
+          <Link
+            href="/reservations"
+            className="hidden md:flex btn-gold py-2.5 px-4 sm:px-5 lg:px-7 text-[10px] sm:text-[11px] tracking-[0.22em] font-semibold whitespace-nowrap shadow-[0_4px_20px_rgba(212,175,55,0.35)] items-center gap-1.5"
+          >
+            <Calendar size={13} />
+            <span>Reservations</span>
+          </Link>
         </div>
       </div>
 
-      {/* Mobile & Tablet Drawer with Animated Slide-Down & Staggered Reveal */}
+      {/* Mobile & Tablet Drawer with Frosted Espresso Glass */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -172,15 +180,15 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden relative z-10 border-t border-white/10 overflow-hidden"
+            className="md:hidden relative z-10 border-t border-[#D4AF37]/20 overflow-hidden"
             style={{
-              backdropFilter: "blur(28px) saturate(160%)",
-              WebkitBackdropFilter: "blur(28px) saturate(160%)",
-              background: "rgba(20, 21, 20, 0.92)",
+              backdropFilter: "blur(30px) saturate(180%)",
+              WebkitBackdropFilter: "blur(30px) saturate(180%)",
+              background: "rgba(14, 13, 12, 0.95)",
             }}
           >
-            <div className="site-container px-4 sm:px-6 py-5 max-h-[calc(100vh-100px)] overflow-y-auto">
-              <nav className="flex flex-col gap-2">
+            <div className="site-container px-4 sm:px-6 py-6 max-h-[calc(100vh-100px)] overflow-y-auto">
+              <nav className="flex flex-col gap-2.5">
                 {navLinks.map((link, idx) => {
                   const isActive =
                     link.href === "/"
@@ -203,14 +211,14 @@ export default function Navbar() {
                         onClick={() => setMobileOpen(false)}
                         className={`flex items-center justify-between py-3 px-4 rounded-lg text-xs tracking-[0.22em] uppercase transition-colors ${
                           isActive
-                            ? "text-white font-semibold bg-white/[0.08]"
+                            ? "text-white font-semibold bg-[#221E1D] border border-[#D4AF37]/30"
                             : "text-zinc-400 hover:text-white font-medium hover:bg-white/[0.04]"
                         }`}
-                        style={{ fontFamily: "'Inter', sans-serif" }}
+                        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                       >
                         <span>{link.label}</span>
                         {isActive && (
-                          <span className="w-2 h-2 rounded-full bg-[#94BA26] shadow-[0_0_8px_#94BA26]" />
+                          <span className="w-2 h-2 rounded-full bg-[#E07A5F] shadow-[0_0_10px_#E07A5F]" />
                         )}
                       </Link>
                     </motion.div>
@@ -226,8 +234,9 @@ export default function Navbar() {
                   <Link
                     href="/reservations"
                     onClick={() => setMobileOpen(false)}
-                    className="btn-gold w-full py-3 text-xs tracking-widest justify-center shadow-lg"
+                    className="btn-gold w-full py-3.5 text-xs tracking-widest justify-center shadow-xl"
                   >
+                    <Calendar size={14} className="mr-1" />
                     Reserve a Table
                   </Link>
                 </motion.div>
@@ -237,7 +246,7 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* Luminous progress bar on the exact bottom line of the navbar */}
+      {/* Luminous progress bar on the exact bottom line */}
       <Suspense fallback={null}>
         <LoadingBar />
       </Suspense>
